@@ -12,7 +12,7 @@ using WebAPICars.Context;
 namespace WebAPICars.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241011145538_Initial")]
+    [Migration("20241012201620_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -84,6 +84,12 @@ namespace WebAPICars.Migrations
                     b.Property<string>("ManufacturerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.HasKey("ManufacturerId");
 

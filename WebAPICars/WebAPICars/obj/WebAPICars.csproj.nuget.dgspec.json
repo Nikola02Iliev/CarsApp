@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\CarsProject\\WebAPICars\\WebAPICars\\WebAPICars.csproj": {}
+    "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\WebAPICars.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\CarsProject\\WebAPICars\\WebAPICars\\WebAPICars.csproj": {
+    "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\WebAPICars.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\CarsProject\\WebAPICars\\WebAPICars\\WebAPICars.csproj",
+        "projectUniqueName": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\WebAPICars.csproj",
         "projectName": "WebAPICars",
-        "projectPath": "C:\\Projects\\CarsProject\\WebAPICars\\WebAPICars\\WebAPICars.csproj",
+        "projectPath": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\WebAPICars.csproj",
         "packagesPath": "C:\\Users\\nikol\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\CarsProject\\WebAPICars\\WebAPICars\\obj\\",
+        "outputPath": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nikol\\AppData\\Roaming\\NuGet\\NuGet.Config",

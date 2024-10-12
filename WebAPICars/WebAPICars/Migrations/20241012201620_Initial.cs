@@ -19,7 +19,8 @@ namespace WebAPICars.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ManufacturerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EstablishedYear = table.Column<int>(type: "int", nullable: false)
+                    EstablishedYear = table.Column<int>(type: "int", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false)
                 },
                 constraints: table =>
                 {

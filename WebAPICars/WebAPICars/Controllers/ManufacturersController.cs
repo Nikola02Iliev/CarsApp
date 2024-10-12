@@ -4,6 +4,7 @@ using WebAPICars.Context;
 using WebAPICars.DTOs.ManufacturerDTOs;
 using WebAPICars.Mappers;
 using WebAPICars.Models;
+using WebAPICars.Repositories.Interfaces;
 
 namespace WebAPICars.Controllers
 {
@@ -12,39 +13,40 @@ namespace WebAPICars.Controllers
     public class ManufacturersController : ControllerBase
     {
         private readonly AppDBContext _context;
+        private readonly IManufacturerRepository _manufacturerRepository;
 
-        public ManufacturersController(AppDBContext context)
+        public ManufacturersController(AppDBContext context, IManufacturerRepository manufacturerRepository)
         {
             _context = context;
+            _manufacturerRepository = manufacturerRepository;
         }
 
         // GET: api/Manufacturers
         [HttpGet]
-        public async Task<ActionResult<List<ManufacturerListDTO>>> GetManufacturers()
+        public IActionResult GetManufacturers()
         {
-            var manufacturers = await _context.Manufacturer.ToListAsync();
+            var manufacturers = _manufacturerRepository.GetAllManufacturers();
 
-            var manufacturersToListDTO = manufacturers.Select(m =>m.ToManufacturerListDTO()).ToList();
+            var manufacturersToListDTO = manufacturers.Select(m => m.ToManufacturerListDTO());
 
-            return manufacturersToListDTO;
+            return Ok(manufacturersToListDTO);
         }
 
         // GET: api/Manufacturers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ManufacturerGetDTO>> GetManufacturer(int id)
+        public async Task<ActionResult<ManufacturerGetDTO>> GetManufacturer(int? id)
         {
-            var manufacturer = await _context.Manufacturer.FindAsync(id);
+            var manufacturer = await _manufacturerRepository.GetManufacturerByIdAsync(id);
 
             if (manufacturer == null)
             {
                 return NotFound();
             }
-
-
+            
             var manufacturerToGetDTO = manufacturer.ToManufacturerGetDTO();
 
             
-            return manufacturerToGetDTO;
+            return Ok(manufacturerToGetDTO);
         }
 
         // PUT: api/Manufacturers/5
@@ -52,41 +54,37 @@ namespace WebAPICars.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutManufacturer(int id, ManufacturerPutDTO manufacturerPutDTO)
         {
+            var existingManufacturer = await _manufacturerRepository.GetManufacturerByIdAsync(id);
+            if (existingManufacturer == null) 
+            {
+                return NotFound();
+            
+            }
 
-            var manufacturerPutDTOToManufacturerModel = manufacturerPutDTO.ToManufacturerModelFromPut();
-
-            manufacturerPutDTOToManufacturerModel.ManufacturerId = id;
-
-            _context.Entry(manufacturerPutDTOToManufacturerModel).State = EntityState.Modified;
+            
+            _manufacturerRepository.PutManufacturer(existingManufacturer, manufacturerPutDTO);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _manufacturerRepository.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ManufacturerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return Conflict("The record you attempted to edit has been modified by another user. Please reload and try again.");
             }
 
             return NoContent();
+            
         }
 
         // POST: api/Manufacturers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Manufacturer>> PostManufacturer(ManufacturerPostDTO manufacturerPostDTO)
+        public async Task<ActionResult> PostManufacturer(ManufacturerPostDTO manufacturerPostDTO)
         {
             var manufacturerPostDTOToManufacturerModel = manufacturerPostDTO.ToManufacturerModelFromPost();
 
-            _context.Manufacturer.Add(manufacturerPostDTOToManufacturerModel);
-            await _context.SaveChangesAsync();
+            await _manufacturerRepository.PostManufacturerAsync(manufacturerPostDTOToManufacturerModel);
 
             var manufacturerToGetDTO  = manufacturerPostDTOToManufacturerModel.ToManufacturerGetDTO();
 
@@ -95,23 +93,20 @@ namespace WebAPICars.Controllers
 
         // DELETE: api/Manufacturers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteManufacturer(int id)
+        public async Task<ActionResult> DeleteManufacturer(int id)
         {
-            var manufacturer = await _context.Manufacturer.FindAsync(id);
-            if (manufacturer == null)
+            var existingManufacturer = await _manufacturerRepository.GetManufacturerByIdAsync(id);
+            if(existingManufacturer == null)
             {
                 return NotFound();
             }
 
-            _context.Manufacturer.Remove(manufacturer);
-            await _context.SaveChangesAsync();
+            _manufacturerRepository.DeleteManufacturer(existingManufacturer);
+            await _manufacturerRepository.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ManufacturerExists(int id)
-        {
-            return _context.Manufacturer.Any(e => e.ManufacturerId == id);
-        }
+        
     }
 }

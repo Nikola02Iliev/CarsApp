@@ -1,6 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using WebAPICars.Context;
+using WebAPICars.Repositories.Implementations;
+using WebAPICars.Repositories.Interfaces;
 
 namespace WebAPICars
 {
@@ -13,6 +15,7 @@ namespace WebAPICars
             // Add services to the container.
 
             builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
             builder.Services.AddControllers();
             builder.Services.AddCors(options =>
             {
