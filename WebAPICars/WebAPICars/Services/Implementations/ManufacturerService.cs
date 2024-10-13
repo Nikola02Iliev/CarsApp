@@ -45,5 +45,10 @@ namespace WebAPICars.Services.Implementations
             _manufacturerRepository.DeleteManufacturer(manufacturer);
             await _manufacturerRepository.SaveChangesAsync();
         }
+
+        public bool ManufacturerNameExists(string manufacturerName)
+        {
+            return _manufacturerRepository.GetAllManufacturers().Any(m => m.ManufacturerName == manufacturerName);
+        }
     }
 }
