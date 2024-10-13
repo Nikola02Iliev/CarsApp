@@ -5,6 +5,7 @@ using WebAPICars.DTOs.ManufacturerDTOs;
 using WebAPICars.Mappers;
 using WebAPICars.Models;
 using WebAPICars.Repositories.Interfaces;
+using WebAPICars.Services.Interfaces;
 
 namespace WebAPICars.Controllers
 {
@@ -12,20 +13,20 @@ namespace WebAPICars.Controllers
     [ApiController]
     public class ManufacturersController : ControllerBase
     {
-        private readonly AppDBContext _context;
-        private readonly IManufacturerRepository _manufacturerRepository;
+        
+        private readonly IManufacturerService _manufacturerService;
 
-        public ManufacturersController(AppDBContext context, IManufacturerRepository manufacturerRepository)
+        public ManufacturersController(IManufacturerService manufacturerService)
         {
-            _context = context;
-            _manufacturerRepository = manufacturerRepository;
+            _manufacturerService = manufacturerService;
         }
+
 
         // GET: api/Manufacturers
         [HttpGet]
         public IActionResult GetManufacturers()
         {
-            var manufacturers = _manufacturerRepository.GetAllManufacturers();
+            var manufacturers = _manufacturerService.GetAllManufacturers();
 
             var manufacturersToListDTO = manufacturers.Select(m => m.ToManufacturerListDTO());
 
@@ -36,14 +37,14 @@ namespace WebAPICars.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ManufacturerGetDTO>> GetManufacturer(int? id)
         {
-            var manufacturer = await _manufacturerRepository.GetManufacturerByIdAsync(id);
+            var existingManufacturer = await _manufacturerService.GetManufacturerByIdAsync(id);
 
-            if (manufacturer == null)
+            if (existingManufacturer == null)
             {
                 return NotFound();
             }
             
-            var manufacturerToGetDTO = manufacturer.ToManufacturerGetDTO();
+            var manufacturerToGetDTO = existingManufacturer.ToManufacturerGetDTO();
 
             
             return Ok(manufacturerToGetDTO);
@@ -54,19 +55,15 @@ namespace WebAPICars.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutManufacturer(int id, ManufacturerPutDTO manufacturerPutDTO)
         {
-            var existingManufacturer = await _manufacturerRepository.GetManufacturerByIdAsync(id);
-            if (existingManufacturer == null) 
+            var existingManufacturer = await _manufacturerService.GetManufacturerByIdAsync(id);
+            if (existingManufacturer == null)
             {
                 return NotFound();
-            
             }
-
-            
-            _manufacturerRepository.PutManufacturer(existingManufacturer, manufacturerPutDTO);
 
             try
             {
-                await _manufacturerRepository.SaveChangesAsync();
+                 await _manufacturerService.PutManufacturer(existingManufacturer, manufacturerPutDTO);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -74,7 +71,6 @@ namespace WebAPICars.Controllers
             }
 
             return NoContent();
-            
         }
 
         // POST: api/Manufacturers
@@ -84,7 +80,7 @@ namespace WebAPICars.Controllers
         {
             var manufacturerPostDTOToManufacturerModel = manufacturerPostDTO.ToManufacturerModelFromPost();
 
-            await _manufacturerRepository.PostManufacturerAsync(manufacturerPostDTOToManufacturerModel);
+            await _manufacturerService.PostManufacturerAsync(manufacturerPostDTOToManufacturerModel);
 
             var manufacturerToGetDTO  = manufacturerPostDTOToManufacturerModel.ToManufacturerGetDTO();
 
@@ -95,14 +91,13 @@ namespace WebAPICars.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteManufacturer(int id)
         {
-            var existingManufacturer = await _manufacturerRepository.GetManufacturerByIdAsync(id);
+            var existingManufacturer = await _manufacturerService.GetManufacturerByIdAsync(id);
             if(existingManufacturer == null)
             {
                 return NotFound();
             }
 
-            _manufacturerRepository.DeleteManufacturer(existingManufacturer);
-            await _manufacturerRepository.SaveChangesAsync();
+            await _manufacturerService.DeleteManufacturer(existingManufacturer);
 
             return NoContent();
         }

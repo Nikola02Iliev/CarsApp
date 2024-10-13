@@ -34,9 +34,7 @@ namespace WebAPICars.Repositories.Implementations
 
         public async Task PostManufacturerAsync(Manufacturer manufacturer)
         {
-            await _dbSet.AddAsync(manufacturer);
-            await SaveChangesAsync();
-             
+            await _dbSet.AddAsync(manufacturer); 
         }
 
         public void PutManufacturer(Manufacturer manufacturer, ManufacturerPutDTO manufacturerPutDTO)

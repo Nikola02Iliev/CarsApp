@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using WebAPICars.Context;
 using WebAPICars.Repositories.Implementations;
 using WebAPICars.Repositories.Interfaces;
+using WebAPICars.Services.Implementations;
+using WebAPICars.Services.Interfaces;
 
 namespace WebAPICars
 {
@@ -16,6 +18,7 @@ namespace WebAPICars
 
             builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
+            builder.Services.AddScoped<IManufacturerService, ManufacturerService>();
             builder.Services.AddControllers();
             builder.Services.AddCors(options =>
             {
