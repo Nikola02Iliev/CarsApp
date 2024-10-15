@@ -56,5 +56,10 @@ namespace WebAPICars.Repositories.Implementations
         {
             await _context.SaveChangesAsync();
         }
+
+        public void DeleteCars(IEnumerable<Car> cars)
+        {
+            _dbSet.RemoveRange(cars);
+        }
     }
 }

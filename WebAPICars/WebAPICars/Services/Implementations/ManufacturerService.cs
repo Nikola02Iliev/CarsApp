@@ -8,10 +8,12 @@ namespace WebAPICars.Services.Implementations
     public class ManufacturerService : IManufacturerService
     {
         private readonly IManufacturerRepository _manufacturerRepository;
+        private readonly ICarRepository _carRepository;
 
-        public ManufacturerService(IManufacturerRepository manufacturerRepository)
+        public ManufacturerService(IManufacturerRepository manufacturerRepository, ICarRepository carRepository)
         {
             _manufacturerRepository = manufacturerRepository;
+            _carRepository = carRepository;
         }
 
         public IQueryable<Manufacturer> GetAllManufacturers()
@@ -42,6 +44,10 @@ namespace WebAPICars.Services.Implementations
 
         public async Task DeleteManufacturer(Manufacturer manufacturer)
         {
+            var carsToDelete = _carRepository.GetAllCars().Where(c => c.ManufacturerId == manufacturer.ManufacturerId).ToList();
+
+            _carRepository.DeleteCars(carsToDelete);
+
             _manufacturerRepository.DeleteManufacturer(manufacturer);
             await _manufacturerRepository.SaveChangesAsync();
         }

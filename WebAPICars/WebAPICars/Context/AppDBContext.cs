@@ -13,5 +13,9 @@ namespace WebAPICars.Context
         public DbSet<Manufacturer> Manufacturer { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Service> Services { get; set; }
+
+
+
+
     }
 }

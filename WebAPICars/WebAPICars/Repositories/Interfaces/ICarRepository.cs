@@ -10,6 +10,7 @@ namespace WebAPICars.Repositories.Interfaces
         Task PostCarAsync(Car car);
         void PutCar(Car car, CarPutDTO carPutDTO);
         void DeleteCar(Car car);
+        void DeleteCars(IEnumerable<Car> cars);
         Task SaveChangesAsync();
 
     }
