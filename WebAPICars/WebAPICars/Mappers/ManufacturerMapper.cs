@@ -24,12 +24,21 @@ namespace WebAPICars.Mappers
                 ManufacturerName = manufacturerModel.ManufacturerName,
                 Country = manufacturerModel.Country,
                 EstablishedYear = manufacturerModel.EstablishedYear,
-                Cars = manufacturerModel.Cars
+                Cars = manufacturerModel.Cars.Select(c => c.ToCarListDTOInManufacturer()).ToList()
             };
 
         }
 
-        public static Manufacturer ToManufacturerModelFromPost(this ManufacturerPostDTO manufacturerPostDTO)
+        public static ManufacturerGetDTOInCar ToManufacturerGetDTOInCar(this Manufacturer manufacturerModel) 
+        {
+            return new ManufacturerGetDTOInCar
+            {
+                ManufacturerId = manufacturerModel.ManufacturerId,
+                ManufacturerName = manufacturerModel.ManufacturerName
+            };
+        }
+
+        public static Manufacturer ToManufacturerModel(this ManufacturerPostDTO manufacturerPostDTO)
         {
             return new Manufacturer
             {

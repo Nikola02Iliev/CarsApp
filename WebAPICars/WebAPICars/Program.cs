@@ -19,6 +19,8 @@ namespace WebAPICars
             builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
             builder.Services.AddScoped<IManufacturerService, ManufacturerService>();
+            builder.Services.AddScoped<ICarRepository, CarRepository>();
+            builder.Services.AddScoped<ICarService, CarService>();
             builder.Services.AddControllers();
             builder.Services.AddCors(options =>
             {
@@ -28,6 +30,8 @@ namespace WebAPICars
                         .AllowAnyMethod()
                         .AllowAnyHeader());
             });
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -40,6 +44,8 @@ namespace WebAPICars
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+
 
             app.UseAuthorization();
 

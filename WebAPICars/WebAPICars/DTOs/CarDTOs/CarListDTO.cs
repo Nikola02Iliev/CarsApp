@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebAPICars.Models
+namespace WebAPICars.DTOs.CarDTOs
 {
-    public class Car
+    public class CarListDTO
     {
         public int CarId { get; set; }
         public int? ManufacturerId { get; set; }
@@ -14,12 +12,7 @@ namespace WebAPICars.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
         public int Year { get; set; }
-        public string Color {  get; set; } = string.Empty;
+        public string Color { get; set; } = string.Empty;
         public string LicensePlate { get; set; } = string.Empty;
-        public Manufacturer? Manufacturer { get; set; }
-        public Owner? Owner { get; set; }
-
-        [Timestamp]
-        public byte[] RowVersion { get; set; }
     }
 }

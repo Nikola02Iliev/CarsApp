@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAPICars.Models
 {
@@ -14,5 +15,7 @@ namespace WebAPICars.Models
         public decimal Cost {  get; set; }
         public Car? Car { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

@@ -78,13 +78,13 @@ namespace WebAPICars.Controllers
         [HttpPost]
         public async Task<ActionResult> PostManufacturer(ManufacturerPostDTO manufacturerPostDTO)
         {
-            var manufacturerPostDTOToManufacturerModel = manufacturerPostDTO.ToManufacturerModelFromPost();
+            var ToManufacturerModel = manufacturerPostDTO.ToManufacturerModel();
 
-            await _manufacturerService.PostManufacturerAsync(manufacturerPostDTOToManufacturerModel);
+            await _manufacturerService.PostManufacturerAsync(ToManufacturerModel);
 
-            var manufacturerToGetDTO  = manufacturerPostDTOToManufacturerModel.ToManufacturerGetDTO();
+            var manufacturerToGetDTO  = ToManufacturerModel.ToManufacturerGetDTO();
 
-            return CreatedAtAction("GetManufacturer", new { id = manufacturerPostDTOToManufacturerModel.ManufacturerId }, manufacturerToGetDTO);
+            return CreatedAtAction("GetManufacturer", new { id = ToManufacturerModel.ManufacturerId }, manufacturerToGetDTO);
         }
 
         // DELETE: api/Manufacturers/5

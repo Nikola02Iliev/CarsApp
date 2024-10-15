@@ -27,7 +27,10 @@ namespace WebAPICars.Repositories.Implementations
 
         public async Task<Manufacturer> GetManufacturerByIdAsync(int? id)
         {
-            var manufacturer = await _dbSet.FindAsync(id);
+            var manufacturer = await _dbSet
+                .Include(m => m.Cars)
+                .SingleOrDefaultAsync(m => m.ManufacturerId == id);
+
 
             return manufacturer;
         }
@@ -42,7 +45,7 @@ namespace WebAPICars.Repositories.Implementations
             manufacturer.ManufacturerName = manufacturerPutDTO.ManufacturerName;
             manufacturer.Country = manufacturerPutDTO.Country;
             manufacturer.EstablishedYear = manufacturerPutDTO.EstablishedYear;
-          
+            
         }
 
         public void DeleteManufacturer(Manufacturer manufacturer)
