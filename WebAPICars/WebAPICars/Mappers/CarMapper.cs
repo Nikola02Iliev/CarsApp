@@ -48,6 +48,21 @@ namespace WebAPICars.Mappers
             };
         }
 
+        public static CarGetDTOAfterPost ToCarGetDTOAfterPost(this Car carModel)
+        {
+            return new CarGetDTOAfterPost
+            {
+                CarId = carModel.CarId,
+                ManufacturerId = carModel.ManufacturerId,
+                OwnerId = carModel.OwnerId,
+                Model = carModel.Model,
+                Price = carModel.Price,
+                Year = carModel.Year,
+                Color = carModel.Color,
+                LicensePlate = carModel.LicensePlate
+            };
+        }
+
         public static Car ToCarModel(this CarPostDTO carPostDTO) 
         {
             return new Car

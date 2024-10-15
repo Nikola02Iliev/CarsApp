@@ -82,9 +82,9 @@ namespace WebAPICars.Controllers
 
             await _manufacturerService.PostManufacturerAsync(ToManufacturerModel);
 
-            var manufacturerToGetDTO  = ToManufacturerModel.ToManufacturerGetDTO();
+            var manufacturerToGetDTOAfterPost  = ToManufacturerModel.ToManufacturerGetDTOAfterPost();
 
-            return CreatedAtAction("GetManufacturer", new { id = ToManufacturerModel.ManufacturerId }, manufacturerToGetDTO);
+            return CreatedAtAction("GetManufacturerAfterPost", new { id = ToManufacturerModel.ManufacturerId }, manufacturerToGetDTOAfterPost);
         }
 
         // DELETE: api/Manufacturers/5
@@ -102,6 +102,22 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        
+        [HttpGet("after-post/{id}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<ActionResult<ManufacturerGetDTOAfterPost>> GetManufacturerAfterPost(int? id)
+        {
+            var existingManufacturer = await _manufacturerService.GetManufacturerByIdAsync(id);
+
+            if (existingManufacturer == null)
+            {
+                return NotFound();
+            }
+
+            var manufacturerToGetDTOAfterPost = existingManufacturer.ToManufacturerGetDTOAfterPost();
+
+
+            return Ok(manufacturerToGetDTOAfterPost);
+        }
+
     }
 }

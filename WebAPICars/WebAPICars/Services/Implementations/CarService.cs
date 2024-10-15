@@ -47,5 +47,10 @@ namespace WebAPICars.Services.Implementations
             _carRepository.DeleteCar(car);
             await _carRepository.SaveChangesAsync();
         }
+
+        public bool LicensePlateExists(string licensePlate)
+        {
+            return _carRepository.GetAllCars().Any(c => c.LicensePlate == licensePlate);
+        }
     }
 }

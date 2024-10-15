@@ -10,6 +10,7 @@ namespace WebAPICars.Services.Interfaces
         Task PostManufacturerAsync(Manufacturer manufacturer);
         Task PutManufacturer(Manufacturer manufacturer, ManufacturerPutDTO manufacturerPutDTO);
         Task DeleteManufacturer(Manufacturer manufacturer);
+        bool ManufacturerExists(int id);
         bool ManufacturerNameExists(string manufacturerName);
     }
 }

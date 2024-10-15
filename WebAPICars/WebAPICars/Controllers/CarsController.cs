@@ -18,10 +18,12 @@ namespace WebAPICars.Controllers
     public class CarsController : ControllerBase
     {
         private readonly ICarService _carService;
+        private readonly IManufacturerService _manufacturerService;
 
-        public CarsController(ICarService carService)
+        public CarsController(ICarService carService, IManufacturerService manufacturerService)
         {
             _carService = carService;
+            _manufacturerService = manufacturerService;
         }
 
         // GET: api/Cars
@@ -78,16 +80,22 @@ namespace WebAPICars.Controllers
         // POST: api/Cars
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("{manufacturerId}")]
-        public async Task<ActionResult<Car>> PostCar(CarPostDTO carPostDTO, int? manufacturerId)
+        public async Task<ActionResult<Car>> PostCar(CarPostDTO carPostDTO, int manufacturerId)
         {
+            if (!_manufacturerService.ManufacturerExists(manufacturerId))
+            {
+                return BadRequest("Manufacturer does not exist.");
+            }
+
             var ToCarModel = carPostDTO.ToCarModel();
 
             await _carService.PostCarAsync(ToCarModel, manufacturerId);
 
-            var carToGetDTO = ToCarModel.ToCarGetDTO();
+            var carToGetDTOAfterPost = ToCarModel.ToCarGetDTOAfterPost();
 
 
-            return CreatedAtAction("GetCar", new { id = ToCarModel.CarId }, carToGetDTO);
+            return CreatedAtAction("GetCarAfterPost", new { id = ToCarModel.CarId }, carToGetDTOAfterPost);
+
         }
 
         // DELETE: api/Cars/5
@@ -104,6 +112,25 @@ namespace WebAPICars.Controllers
 
             return NoContent();
         }
+
+
+        [HttpGet("after-post/{id}")]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public async Task<ActionResult<CarGetDTOAfterPost>> GetCarAfterPost(int? id)
+        {
+            var existingCar = await _carService.GetCarByIdAsync(id);
+
+            if (existingCar == null)
+            {
+                return NotFound();
+            }
+
+            var carToGetDTOAfterPost = existingCar.ToCarGetDTOAfterPost();
+
+            return Ok(carToGetDTOAfterPost);
+        }
+
+
 
     }
 }

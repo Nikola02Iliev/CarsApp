@@ -46,9 +46,17 @@ namespace WebAPICars.Services.Implementations
             await _manufacturerRepository.SaveChangesAsync();
         }
 
+
+        public bool ManufacturerExists(int id)
+        {
+            return _manufacturerRepository.GetAllManufacturers().Any(m => m.ManufacturerId == id);
+        }
+
         public bool ManufacturerNameExists(string manufacturerName)
         {
             return _manufacturerRepository.GetAllManufacturers().Any(m => m.ManufacturerName == manufacturerName);
         }
+
+        
     }
 }

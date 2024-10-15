@@ -11,6 +11,7 @@ namespace WebAPICars.Services.Interfaces
         Task PostCarAsync(Car car, int? manufacturerId);
         Task PutCar(Car car, CarPutDTO  carPutDTO);
         Task DeleteCar(Car car);
+        bool LicensePlateExists(string licensePlate);
 
     }
 }

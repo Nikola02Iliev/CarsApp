@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Projects\\CarsApp\\WebAPICars\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\controllers\\carscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\services\\implementations\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\services\\implementations\\carservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 487,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -63,32 +54,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CarService.cs",
-              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Services\\Implementations\\CarService.cs",
-              "RelativeDocumentMoniker": "WebAPICars\\Services\\Implementations\\CarService.cs",
-              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Services\\Implementations\\CarService.cs",
-              "RelativeToolTip": "WebAPICars\\Services\\Implementations\\CarService.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAjwC8AAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T14:00:56.321Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CarsController.cs",
-              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Controllers\\CarsController.cs",
-              "RelativeDocumentMoniker": "WebAPICars\\Controllers\\CarsController.cs",
-              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Controllers\\CarsController.cs",
-              "RelativeToolTip": "WebAPICars\\Controllers\\CarsController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAGYAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T13:59:43.118Z",
-              "EditorCaption": ""
             }
           ]
         }

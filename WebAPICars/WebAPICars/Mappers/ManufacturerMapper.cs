@@ -29,6 +29,17 @@ namespace WebAPICars.Mappers
 
         }
 
+        public static ManufacturerGetDTOAfterPost ToManufacturerGetDTOAfterPost(this Manufacturer manufacturerModel)
+        {
+            return new ManufacturerGetDTOAfterPost
+            {
+                ManufacturerId = manufacturerModel.ManufacturerId,
+                ManufacturerName = manufacturerModel.ManufacturerName,
+                Country = manufacturerModel.Country,
+                EstablishedYear = manufacturerModel.EstablishedYear
+            };
+        }
+
         public static ManufacturerGetDTOInCar ToManufacturerGetDTOInCar(this Manufacturer manufacturerModel) 
         {
             return new ManufacturerGetDTOInCar
