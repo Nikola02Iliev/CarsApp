@@ -30,6 +30,16 @@ namespace WebAPICars.Mappers
                 LicensePlate = carModel.LicensePlate
             };
         }
+        public static CarListDTOInOwner ToCarListDTOInOwner(this Car carModel)
+        {
+            return new CarListDTOInOwner
+            {
+                CarId = carModel.CarId,
+                Model = carModel.Model,
+                LicensePlate = carModel.LicensePlate,
+                Manufacturer = carModel.Manufacturer.ToManufacturerDTOInCarListDTOInOwner()
+            };
+        }
 
         public static CarGetDTO ToCarGetDTO(this Car carModel) 
         {

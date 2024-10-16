@@ -29,9 +29,10 @@ namespace WebAPICars.Services.Implementations
             return car;
         }
 
-        public async Task PostCarAsync(Car car, int? manufacturerId)
+        public async Task PostCarAsync(Car car, int? manufacturerId, int? ownerId)
         {
             car.ManufacturerId = manufacturerId;
+            car.OwnerId = ownerId;
             await _carRepository.PostCarAsync(car);
             await _carRepository.SaveChangesAsync();
         }

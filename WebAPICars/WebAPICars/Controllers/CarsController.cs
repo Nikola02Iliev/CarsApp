@@ -19,11 +19,13 @@ namespace WebAPICars.Controllers
     {
         private readonly ICarService _carService;
         private readonly IManufacturerService _manufacturerService;
+        private readonly IOwnerService _ownerService;
 
-        public CarsController(ICarService carService, IManufacturerService manufacturerService)
+        public CarsController(ICarService carService, IManufacturerService manufacturerService, IOwnerService ownerService)
         {
             _carService = carService;
             _manufacturerService = manufacturerService;
+            _ownerService = ownerService;
         }
 
         // GET: api/Cars
@@ -79,17 +81,22 @@ namespace WebAPICars.Controllers
 
         // POST: api/Cars
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("{manufacturerId}")]
-        public async Task<ActionResult<Car>> PostCar(CarPostDTO carPostDTO, int manufacturerId)
+        [HttpPost("{manufacturerId}/{ownerId}")]
+        public async Task<ActionResult<Car>> PostCar(CarPostDTO carPostDTO, int manufacturerId, int ownerId)
         {
             if (!_manufacturerService.ManufacturerExists(manufacturerId))
             {
                 return BadRequest("Manufacturer does not exist.");
             }
 
+            if (!_ownerService.OwnerExists(ownerId))
+            {
+                return BadRequest("Owner does not exist.");
+            }
+
             var ToCarModel = carPostDTO.ToCarModel();
 
-            await _carService.PostCarAsync(ToCarModel, manufacturerId);
+            await _carService.PostCarAsync(ToCarModel, manufacturerId, ownerId);
 
             var carToGetDTOAfterPost = ToCarModel.ToCarGetDTOAfterPost();
 

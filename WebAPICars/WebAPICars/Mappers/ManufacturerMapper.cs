@@ -49,6 +49,15 @@ namespace WebAPICars.Mappers
             };
         }
 
+        public static ManufacturerDTOInCarListDTOInOwner ToManufacturerDTOInCarListDTOInOwner(this Manufacturer manufacturerModel)
+        {
+            return new ManufacturerDTOInCarListDTOInOwner
+            {
+                ManufacturerId = manufacturerModel.ManufacturerId,
+                ManufacturerName = manufacturerModel.ManufacturerName
+            };
+        }
+
         public static Manufacturer ToManufacturerModel(this ManufacturerPostDTO manufacturerPostDTO)
         {
             return new Manufacturer

@@ -8,7 +8,7 @@ namespace WebAPICars.Services.Interfaces
         IQueryable<Car> GetAllCars();
 
         Task<Car> GetCarByIdAsync(int? id);
-        Task PostCarAsync(Car car, int? manufacturerId);
+        Task PostCarAsync(Car car, int? manufacturerId, int? ownerId);
         Task PutCar(Car car, CarPutDTO  carPutDTO);
         Task DeleteCar(Car car);
         bool LicensePlateExists(string licensePlate);
