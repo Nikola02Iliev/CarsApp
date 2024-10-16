@@ -12,7 +12,7 @@ namespace WebAPICars.Validations.Car
 
             if (carService == null)
             {
-                return new ValidationResult("Unable to validate manufacturer name uniqueness.");
+                return new ValidationResult("Unable to validate license plate uniqueness.");
             }
 
             if (value is string licensePlate)

@@ -7,7 +7,7 @@ namespace WebAPICars.DTOs.CarDTOs
     public class CarPostDTO
     {
         [Required(ErrorMessage = "This field is required")]
-        [StringLength(30, ErrorMessage = "This field can't be more than 50 characters")]
+        [StringLength(30, ErrorMessage = "This field can't be more than 30 characters")]
         public string Model { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "This field is required")]
@@ -20,7 +20,7 @@ namespace WebAPICars.DTOs.CarDTOs
         public int Year { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
-        [StringLength(20, ErrorMessage = "This field can't be more than 50 characters")]
+        [StringLength(20, ErrorMessage = "This field can't be more than 30 characters")]
         public string Color { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "This field is required")]

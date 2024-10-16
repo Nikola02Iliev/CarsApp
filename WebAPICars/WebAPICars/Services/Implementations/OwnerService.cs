@@ -52,5 +52,15 @@ namespace WebAPICars.Services.Implementations
         {
             return _ownerRepository.GetAllOwners().Any(o => o.OwnerId == id);
         }
+
+        public bool PhoneNumberExists(string phoneNumber)
+        {
+            return _ownerRepository.GetAllOwners().Any(o => o.PhoneNumber == phoneNumber);
+        }
+
+        public bool EmailExists(string email)
+        {
+            return _ownerRepository.GetAllOwners().Any(o => o.Email == email);
+        }
     }
 }

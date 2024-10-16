@@ -11,5 +11,7 @@ namespace WebAPICars.Services.Interfaces
         Task PutOwner(Owner owner, OwnerPutDTO ownerPutDTO);
         Task DeleteOwner(Owner owner);
         bool OwnerExists(int id);
+        bool PhoneNumberExists(string phoneNumber);
+        bool EmailExists(string email);
     }
 }
