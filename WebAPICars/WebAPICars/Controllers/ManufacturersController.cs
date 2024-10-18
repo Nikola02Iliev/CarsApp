@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAPICars.Context;
 using WebAPICars.DTOs.ManufacturerDTOs;
+using WebAPICars.Filters;
 using WebAPICars.Mappers;
-using WebAPICars.Models;
-using WebAPICars.Repositories.Interfaces;
 using WebAPICars.Services.Interfaces;
 
 namespace WebAPICars.Controllers
@@ -13,7 +11,7 @@ namespace WebAPICars.Controllers
     [ApiController]
     public class ManufacturersController : ControllerBase
     {
-        
+
         private readonly IManufacturerService _manufacturerService;
 
         public ManufacturersController(IManufacturerService manufacturerService)
@@ -24,9 +22,9 @@ namespace WebAPICars.Controllers
 
         // GET: api/Manufacturers
         [HttpGet]
-        public IActionResult GetManufacturers()
+        public IActionResult GetManufacturers([FromQuery] ManufacturerQueries manufacturerQueries)
         {
-            var manufacturers = _manufacturerService.GetAllManufacturers();
+            var manufacturers = _manufacturerService.GetAllManufacturers(manufacturerQueries);
 
             var manufacturersToListDTO = manufacturers.Select(m => m.ToManufacturerListDTO());
 
@@ -43,10 +41,10 @@ namespace WebAPICars.Controllers
             {
                 return NotFound();
             }
-            
+
             var manufacturerToGetDTO = existingManufacturer.ToManufacturerGetDTO();
 
-            
+
             return Ok(manufacturerToGetDTO);
         }
 
@@ -63,7 +61,7 @@ namespace WebAPICars.Controllers
 
             try
             {
-                 await _manufacturerService.PutManufacturer(existingManufacturer, manufacturerPutDTO);
+                await _manufacturerService.PutManufacturer(existingManufacturer, manufacturerPutDTO);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -82,7 +80,7 @@ namespace WebAPICars.Controllers
 
             await _manufacturerService.PostManufacturerAsync(ToManufacturerModel);
 
-            var manufacturerToGetDTOAfterPost  = ToManufacturerModel.ToManufacturerGetDTOAfterPost();
+            var manufacturerToGetDTOAfterPost = ToManufacturerModel.ToManufacturerGetDTOAfterPost();
 
             return CreatedAtAction("GetManufacturerAfterPost", new { id = ToManufacturerModel.ManufacturerId }, manufacturerToGetDTOAfterPost);
         }
@@ -92,7 +90,7 @@ namespace WebAPICars.Controllers
         public async Task<ActionResult> DeleteManufacturer(int id)
         {
             var existingManufacturer = await _manufacturerService.GetManufacturerByIdAsync(id);
-            if(existingManufacturer == null)
+            if (existingManufacturer == null)
             {
                 return NotFound();
             }

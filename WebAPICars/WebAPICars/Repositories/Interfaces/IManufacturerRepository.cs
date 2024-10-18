@@ -1,4 +1,6 @@
-﻿using WebAPICars.DTOs.ManufacturerDTOs;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebAPICars.DTOs.ManufacturerDTOs;
+using WebAPICars.Filters;
 using WebAPICars.Models;
 
 namespace WebAPICars.Repositories.Interfaces

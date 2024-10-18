@@ -4,6 +4,7 @@ using WebAPICars.Context;
 using WebAPICars.DTOs.OwnerDTOs;
 using WebAPICars.Mappers;
 using WebAPICars.Models;
+using WebAPICars.Queries;
 using WebAPICars.Services.Interfaces;
 
 namespace WebAPICars.Controllers
@@ -23,9 +24,9 @@ namespace WebAPICars.Controllers
 
         // GET: api/Owners
         [HttpGet]
-        public IActionResult GetOwners()
+        public IActionResult GetOwners([FromQuery] OwnerQueries ownerQueries)
         {
-            var owners = _ownerService.GetAllOwners();
+            var owners = _ownerService.GetAllOwners(ownerQueries);
 
             var ToOwnerListDTO = owners.Select(o => o.ToOwnerListDTO());
 

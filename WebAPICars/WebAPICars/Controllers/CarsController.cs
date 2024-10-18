@@ -9,6 +9,7 @@ using WebAPICars.Context;
 using WebAPICars.DTOs.CarDTOs;
 using WebAPICars.Mappers;
 using WebAPICars.Models;
+using WebAPICars.Queries;
 using WebAPICars.Services.Interfaces;
 
 namespace WebAPICars.Controllers
@@ -30,9 +31,9 @@ namespace WebAPICars.Controllers
 
         // GET: api/Cars
         [HttpGet]
-        public IActionResult GetCars()
+        public IActionResult GetCars([FromQuery] CarQueries carQueries)
         {
-            var cars = _carService.GetAllCars();
+            var cars = _carService.GetAllCars(carQueries);
 
             var carsToListDTO = cars.Select(c => c.ToCarListDTO());
 

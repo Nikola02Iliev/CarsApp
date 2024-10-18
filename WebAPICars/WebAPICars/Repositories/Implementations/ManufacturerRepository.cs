@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebAPICars.Context;
 using WebAPICars.DTOs.ManufacturerDTOs;
+using WebAPICars.Filters;
 using WebAPICars.Models;
 using WebAPICars.Repositories.Interfaces;
 

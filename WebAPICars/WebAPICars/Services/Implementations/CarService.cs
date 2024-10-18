@@ -1,5 +1,6 @@
 ﻿using WebAPICars.DTOs.CarDTOs;
 using WebAPICars.Models;
+using WebAPICars.Queries;
 using WebAPICars.Repositories.Interfaces;
 using WebAPICars.Services.Interfaces;
 
@@ -15,11 +16,109 @@ namespace WebAPICars.Services.Implementations
         }
 
         
-        public IQueryable<Car> GetAllCars()
+        public IQueryable<Car> GetAllCars(CarQueries carQueries)
         {
             var cars = _carRepository.GetAllCars();
 
-            return cars;
+            if (!string.IsNullOrWhiteSpace(carQueries.Model))
+            {
+                cars = cars.Where(c => c.Model.Contains(carQueries.Model));
+            }
+
+            if (carQueries.Price != null) 
+            {
+                cars = cars.Where(c => c.Price.Equals(carQueries.Price));
+            }
+
+            if (carQueries.Year != null)
+            {
+                cars = cars.Where(c => c.Year.Equals(carQueries.Year));
+            }
+
+            if (!string.IsNullOrWhiteSpace(carQueries.Color))
+            {
+                cars = cars.Where(c => c.Color.Contains(carQueries.Color));
+            }
+
+            if (!string.IsNullOrWhiteSpace(carQueries.LicensePlate))
+            {
+                cars = cars.Where(c => c.LicensePlate.Contains(carQueries.LicensePlate));
+
+            }
+
+            if (!string.IsNullOrWhiteSpace(carQueries.SortBy))
+            {
+                if(carQueries.SortBy == "Model")
+                {
+                    if (carQueries.IsDescending)
+                    {
+                        cars = cars.OrderByDescending(c => c.Model);
+                    }
+                    else
+                    {
+                        cars = cars.OrderBy(c => c.Model);
+
+                    }
+                }
+
+                if (carQueries.SortBy == "Price")
+                {
+                    if (carQueries.IsDescending)
+                    {
+                        cars = cars.OrderByDescending(c => c.Price);
+                    }
+                    else
+                    {
+                        cars = cars.OrderBy(c => c.Price);
+
+                    }
+                }
+
+                if (carQueries.SortBy == "Year")
+                {
+                    if (carQueries.IsDescending)
+                    {
+                        cars = cars.OrderByDescending(c => c.Year);
+                    }
+                    else
+                    {
+                        cars = cars.OrderBy(c => c.Year);
+
+                    }
+                }
+
+                if (carQueries.SortBy == "Color")
+                {
+                    if (carQueries.IsDescending)
+                    {
+                        cars = cars.OrderByDescending(c => c.Color);
+                    }
+                    else
+                    {
+                        cars = cars.OrderBy(c => c.Color);
+
+                    }
+                }
+
+                if (carQueries.SortBy == "LicensePlate")
+                {
+                    if (carQueries.IsDescending)
+                    {
+                        cars = cars.OrderByDescending(c => c.LicensePlate);
+                    }
+                    else
+                    {
+                        cars = cars.OrderBy(c => c.LicensePlate);
+
+                    }
+                }
+            }
+
+            var skipNumber = (carQueries.PageNumber - 1) * carQueries.PageSize;
+            var takeNumber = carQueries.PageSize;
+
+
+            return cars.Skip(skipNumber).Take(takeNumber);
         }
 
         public async Task<Car> GetCarByIdAsync(int? id)
