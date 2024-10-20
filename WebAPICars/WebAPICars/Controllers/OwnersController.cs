@@ -41,7 +41,7 @@ namespace WebAPICars.Controllers
 
             if (existingOwner == null)
             {
-                return NotFound();
+                return NotFound($"Owner with {id} id does not exist!");
             }
 
             var ToOwnerGetDTO = existingOwner.ToOwnerGetDTO();
@@ -57,7 +57,7 @@ namespace WebAPICars.Controllers
             var existingOwner = await _ownerService.GetOwnerByIdAsync(id);
             if (existingOwner == null)
             {
-                return NotFound();
+                return NotFound($"Owner with {id} id does not exist!");
             }
 
             try
@@ -94,7 +94,7 @@ namespace WebAPICars.Controllers
             var existingOwner = await _ownerService.GetOwnerByIdAsync(id);
             if (existingOwner == null)
             {
-                return NotFound();
+                return NotFound($"Owner with {id} id does not exist!");
             }
 
             await _ownerService.DeleteOwner(existingOwner);
@@ -111,7 +111,7 @@ namespace WebAPICars.Controllers
 
             if (existingOwner == null)
             {
-                return NotFound();
+                return NotFound($"Owner with {id} id does not exist!");
             }
 
             var ToOwnerGetDTOAfterPost = existingOwner.ToOwnerGetDTOAfterPost();

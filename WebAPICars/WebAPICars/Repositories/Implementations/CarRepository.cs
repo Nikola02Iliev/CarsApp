@@ -47,6 +47,11 @@ namespace WebAPICars.Repositories.Implementations
             car.LicensePlate = carPutDTO.LicensePlate;
         }
 
+        public void PutCarOwnerId(Car car, int? ownerId)
+        {
+            car.OwnerId = ownerId;
+        }
+
         public void DeleteCar(Car car)
         {
             _dbSet.Remove(car);  
@@ -61,5 +66,7 @@ namespace WebAPICars.Repositories.Implementations
         {
             _dbSet.RemoveRange(cars);
         }
+
+        
     }
 }

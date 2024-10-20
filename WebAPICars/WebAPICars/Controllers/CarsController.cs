@@ -41,6 +41,17 @@ namespace WebAPICars.Controllers
             
         }
 
+        [HttpGet("get-cars-without-owner")]
+        public IActionResult GetCarsWithoutOwner([FromQuery] CarQueries carQueries)
+        {
+            var cars = _carService.GetCarsWithoutOwner(carQueries);
+
+            var carsToListDTO = cars.Select(c => c.ToCarListDTO());
+
+            return Ok(carsToListDTO);
+
+        }
+
         // GET: api/Cars/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CarGetDTO>> GetCar(int? id)
@@ -49,7 +60,7 @@ namespace WebAPICars.Controllers
 
             if (existingCar == null)
             {
-                return NotFound();
+                return NotFound($"Car with {id} id does not exist!");
             }
 
             var carToGetDTO = existingCar.ToCarGetDTO();
@@ -65,12 +76,39 @@ namespace WebAPICars.Controllers
             var existingCar = await _carService.GetCarByIdAsync(id);
             if(existingCar == null)
             {
-                return NotFound();
+                return NotFound($"Car with {id} id does not exist!");
             }
 
             try
             {
                 await _carService.PutCar(existingCar, carPutDTO);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return Conflict("The record you attempted to edit has been modified by another user. Please reload and try again.");
+            }
+
+            return NoContent();
+        }
+
+        [HttpPut("put-ownerid-car/{id}/{ownerId}")]
+        public async Task<IActionResult> PutCar(int id, int ownerId)
+        {
+            var existingCar = await _carService.GetCarByIdAsync(id);
+            if (existingCar == null)
+            {
+                return NotFound($"Car with {id} id does not exist!");
+            }
+
+            var existingOwner = _ownerService.OwnerExists(ownerId);
+            if (!existingOwner)
+            {
+                return NotFound($"Owner with {ownerId} id does not exist!");
+            }
+
+            try
+            {
+                await _carService.PutCarOwnerId(existingCar, ownerId);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -87,17 +125,36 @@ namespace WebAPICars.Controllers
         {
             if (!_manufacturerService.ManufacturerExists(manufacturerId))
             {
-                return BadRequest("Manufacturer does not exist.");
+                return NotFound($"Manufacturer with {manufacturerId} id does not exist!");
             }
 
             if (!_ownerService.OwnerExists(ownerId))
             {
-                return BadRequest("Owner does not exist.");
+                return NotFound($"Owner with {ownerId} id does not exist!");
             }
 
             var ToCarModel = carPostDTO.ToCarModel();
 
             await _carService.PostCarAsync(ToCarModel, manufacturerId, ownerId);
+
+            var carToGetDTOAfterPost = ToCarModel.ToCarGetDTOAfterPost();
+
+
+            return CreatedAtAction("GetCarAfterPost", new { id = ToCarModel.CarId }, carToGetDTOAfterPost);
+
+        }
+
+        [HttpPost("post-car-without-owner/{manufacturerId}")]
+        public async Task<ActionResult<Car>> PostCarWithoutOwner(CarPostDTO carPostDTO, int manufacturerId)
+        {
+            if (!_manufacturerService.ManufacturerExists(manufacturerId))
+            {
+                return NotFound($"Manufacturer with {manufacturerId} id does not exist!");
+            }
+
+            var ToCarModel = carPostDTO.ToCarModel();
+
+            await _carService.PostCarWithoutOwnerAsync(ToCarModel, manufacturerId);
 
             var carToGetDTOAfterPost = ToCarModel.ToCarGetDTOAfterPost();
 
@@ -113,7 +170,7 @@ namespace WebAPICars.Controllers
             var existingCar = await _carService.GetCarByIdAsync(id);
             if (existingCar == null)
             {
-                return NotFound();
+                return NotFound($"Car with {id} id does not exist!");
             }
 
             await _carService.DeleteCar(existingCar);
@@ -130,7 +187,7 @@ namespace WebAPICars.Controllers
 
             if (existingCar == null)
             {
-                return NotFound();
+                return NotFound($"Car with {id} id does not exist!");
             }
 
             var carToGetDTOAfterPost = existingCar.ToCarGetDTOAfterPost();

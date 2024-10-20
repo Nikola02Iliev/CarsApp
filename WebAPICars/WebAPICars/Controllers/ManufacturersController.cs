@@ -39,7 +39,7 @@ namespace WebAPICars.Controllers
 
             if (existingManufacturer == null)
             {
-                return NotFound();
+                return NotFound($"Manufacturer with {id} id does not exist!");
             }
 
             var manufacturerToGetDTO = existingManufacturer.ToManufacturerGetDTO();
@@ -56,7 +56,7 @@ namespace WebAPICars.Controllers
             var existingManufacturer = await _manufacturerService.GetManufacturerByIdAsync(id);
             if (existingManufacturer == null)
             {
-                return NotFound();
+                return NotFound($"Manufacturer with {id} id does not exist!");
             }
 
             try
@@ -92,7 +92,7 @@ namespace WebAPICars.Controllers
             var existingManufacturer = await _manufacturerService.GetManufacturerByIdAsync(id);
             if (existingManufacturer == null)
             {
-                return NotFound();
+                return NotFound($"Manufacturer with {id} id does not exist!");
             }
 
             await _manufacturerService.DeleteManufacturer(existingManufacturer);
@@ -108,7 +108,7 @@ namespace WebAPICars.Controllers
 
             if (existingManufacturer == null)
             {
-                return NotFound();
+                return NotFound($"Manufacturer with {id} id does not exist!");
             }
 
             var manufacturerToGetDTOAfterPost = existingManufacturer.ToManufacturerGetDTOAfterPost();
