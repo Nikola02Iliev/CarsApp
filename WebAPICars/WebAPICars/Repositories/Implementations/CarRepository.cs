@@ -28,6 +28,7 @@ namespace WebAPICars.Repositories.Implementations
         {
             var car = await _dbSet
                 .Include(c => c.Manufacturer)
+                .Include(c => c.Owner)
                 .SingleOrDefaultAsync(c => c.CarId == id);
 
             return car;

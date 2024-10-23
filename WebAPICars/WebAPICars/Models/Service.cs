@@ -9,10 +9,12 @@ namespace WebAPICars.Models
         public int? CarId {  get; set; }
         public DateTime StartServiceDate { get; set; }
         public DateTime EndServiceDate { get; set;}
-        public string ServiceName { get; set; } = string.Empty;
+        public string ServiceType { get; set; } = string.Empty;
+        public string ServiceDescription { get; set; } = string.Empty;
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Cost {  get; set; }
+        public bool IsCarRepaired {  get; set; }
         public Car? Car { get; set; }
 
         [Timestamp]

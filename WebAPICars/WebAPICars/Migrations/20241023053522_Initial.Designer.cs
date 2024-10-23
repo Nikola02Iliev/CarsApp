@@ -12,8 +12,8 @@ using WebAPICars.Context;
 namespace WebAPICars.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241015052555_Second")]
-    partial class Second
+    [Migration("20241023053522_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -161,13 +161,20 @@ namespace WebAPICars.Migrations
                     b.Property<DateTime>("EndServiceDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsCarRepaired")
+                        .HasColumnType("bit");
+
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<string>("ServiceName")
+                    b.Property<string>("ServiceDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServiceType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

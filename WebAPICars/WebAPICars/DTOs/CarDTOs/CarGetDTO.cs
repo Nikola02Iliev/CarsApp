@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using WebAPICars.DTOs.ManufacturerDTOs;
+using WebAPICars.DTOs.OwnerDTOs;
 using WebAPICars.Models;
 
 namespace WebAPICars.DTOs.CarDTOs
@@ -17,6 +18,6 @@ namespace WebAPICars.DTOs.CarDTOs
         public string Color { get; set; } = string.Empty;
         public string LicensePlate { get; set; } = string.Empty;
         public ManufacturerGetDTOInCar? Manufacturer { get; set; }
-        public Owner? Owner { get; set; }
+        public OwnerGetDTOInCar? Owner { get; set; }
     }
 }

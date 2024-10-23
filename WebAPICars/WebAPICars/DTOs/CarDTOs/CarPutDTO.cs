@@ -12,7 +12,6 @@ namespace WebAPICars.DTOs.CarDTOs
         public string Model { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "This field is required")]
-        [Column(TypeName = "decimal(18,2)")]
         [ValidationForPrice]
         public decimal Price { get; set; }
 

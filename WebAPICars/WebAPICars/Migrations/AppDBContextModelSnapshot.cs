@@ -158,13 +158,20 @@ namespace WebAPICars.Migrations
                     b.Property<DateTime>("EndServiceDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsCarRepaired")
+                        .HasColumnType("bit");
+
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
                         .IsRequired()
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<string>("ServiceName")
+                    b.Property<string>("ServiceDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServiceType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

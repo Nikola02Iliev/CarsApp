@@ -54,7 +54,7 @@ namespace WebAPICars.Mappers
                 Color = carModel.Color,
                 LicensePlate = carModel.LicensePlate,
                 Manufacturer = carModel.Manufacturer.ToManufacturerGetDTOInCar(),
-                Owner = carModel.Owner
+                Owner = carModel.Owner.ToOwnerGetDTOInCar()
             };
         }
 
@@ -72,6 +72,29 @@ namespace WebAPICars.Mappers
                 LicensePlate = carModel.LicensePlate
             };
         }
+
+        public static CarGetDTOInService ToCarGetDTOInService(this Car carModel)
+        {
+            return new CarGetDTOInService
+            {
+                CarId = carModel.CarId,
+                Model = carModel.Model,
+                LicensePlate = carModel.LicensePlate,
+                Owner = carModel.Owner.ToOwnerGetDTOInCarGetDTOInService()
+            };
+        }
+
+        public static CarGetDTOInServiceAfterPost ToCarGetDTOInServiceAfterPost(this Car carModel)
+        {
+            return new CarGetDTOInServiceAfterPost
+            {
+                CarId = carModel.CarId,
+                Model = carModel.Model,
+                LicensePlate = carModel.LicensePlate,
+                Owner = carModel.Owner.ToOwnerGetDTOInCarGetDTOInServiceAfterPost()
+            };
+        }
+
 
         public static Car ToCarModel(this CarPostDTO carPostDTO) 
         {

@@ -35,6 +35,17 @@ namespace WebAPICars.Mappers
         
         }
 
+        public static OwnerGetDTOInCar ToOwnerGetDTOInCar(this Owner ownerModel)
+        {
+            return new OwnerGetDTOInCar
+            {
+                OwnerId = ownerModel.OwnerId,
+                FirstName = ownerModel.FirstName,
+                LastName = ownerModel.LastName,
+                PhoneNumber = ownerModel.PhoneNumber
+            };
+        }
+
         public static OwnerGetDTOAfterPost ToOwnerGetDTOAfterPost(this Owner ownerModel)
         {
             return new OwnerGetDTOAfterPost
@@ -48,6 +59,30 @@ namespace WebAPICars.Mappers
                 Email = ownerModel.Email
             };
         }
+
+        public static OwnerGetDTOInCarGetDTOInService ToOwnerGetDTOInCarGetDTOInService(this Owner ownerModel)
+        {
+            return new OwnerGetDTOInCarGetDTOInService
+            {
+                OwnerId = ownerModel.OwnerId,
+                FirstName = ownerModel.FirstName,
+                LastName = ownerModel.LastName,
+                PhoneNumber = ownerModel.PhoneNumber
+            };
+        }
+
+        public static OwnerGetDTOInCarGetDTOInServiceAfterPost ToOwnerGetDTOInCarGetDTOInServiceAfterPost(this Owner ownerModel)
+        {
+            return new OwnerGetDTOInCarGetDTOInServiceAfterPost
+            {
+                OwnerId = ownerModel.OwnerId,
+                FirstName = ownerModel.FirstName,
+                LastName = ownerModel.LastName,
+                PhoneNumber = ownerModel.PhoneNumber
+            };
+        }
+
+
 
         public static Owner ToOwnerModel(this OwnerPostDTO ownerPostDTO) 
         {

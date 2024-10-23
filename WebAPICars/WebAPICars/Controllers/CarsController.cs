@@ -121,7 +121,7 @@ namespace WebAPICars.Controllers
         // POST: api/Cars
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("{manufacturerId}/{ownerId}")]
-        public async Task<ActionResult<Car>> PostCar(CarPostDTO carPostDTO, int manufacturerId, int ownerId)
+        public async Task<ActionResult> PostCar(CarPostDTO carPostDTO, int manufacturerId, int ownerId)
         {
             if (!_manufacturerService.ManufacturerExists(manufacturerId))
             {
@@ -145,7 +145,7 @@ namespace WebAPICars.Controllers
         }
 
         [HttpPost("post-car-without-owner/{manufacturerId}")]
-        public async Task<ActionResult<Car>> PostCarWithoutOwner(CarPostDTO carPostDTO, int manufacturerId)
+        public async Task<ActionResult> PostCarWithoutOwner(CarPostDTO carPostDTO, int manufacturerId)
         {
             if (!_manufacturerService.ManufacturerExists(manufacturerId))
             {

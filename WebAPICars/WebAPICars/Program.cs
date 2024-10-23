@@ -23,6 +23,8 @@ namespace WebAPICars
             builder.Services.AddScoped<ICarService, CarService>();
             builder.Services.AddScoped<IOwnerRepository, OwnerRepository>();
             builder.Services.AddScoped<IOwnerService, OwnerService>();
+            builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+            builder.Services.AddScoped<IServiceService, ServiceService>();
             builder.Services.AddControllers();
             builder.Services.AddCors(options =>
             {

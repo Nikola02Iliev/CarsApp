@@ -38,7 +38,8 @@ namespace WebAPICars.Migrations
                     Age = table.Column<int>(type: "int", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,7 +58,8 @@ namespace WebAPICars.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LicensePlate = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    LicensePlate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,8 +85,11 @@ namespace WebAPICars.Migrations
                     CarId = table.Column<int>(type: "int", nullable: true),
                     StartServiceDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndServiceDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ServiceName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cost = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    ServiceType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ServiceDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IsCarRepaired = table.Column<bool>(type: "bit", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false)
                 },
                 constraints: table =>
                 {
