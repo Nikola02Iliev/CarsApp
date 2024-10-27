@@ -45,7 +45,12 @@ namespace WebAPICars.Repositories.Implementations
             service.ServiceType = servicePutDTO.ServiceType;
             service.ServiceDescription = servicePutDTO.ServiceDescription;
             service.Cost = servicePutDTO.Cost;
-            service.IsCarRepaired = servicePutDTO.IsCarRepaired;
+        }
+
+        public void PutServiceIsCarRepairedToTrue(Service service)
+        {
+            service.IsCarRepaired = true;
+           
         }
 
         public void DeleteService(Service service)
@@ -57,5 +62,7 @@ namespace WebAPICars.Repositories.Implementations
         {
             await _context.SaveChangesAsync();
         }
+
+        
     }
 }

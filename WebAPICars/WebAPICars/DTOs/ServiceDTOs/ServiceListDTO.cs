@@ -7,8 +7,8 @@ namespace WebAPICars.DTOs.ServiceDTOs
     {
         public int ServiceId { get; set; }
         public int? CarId { get; set; }
-        public DateTime StartServiceDate { get; set; }
-        public DateTime EndServiceDate { get; set; }
+        public string StartServiceDate { get; set; } = string.Empty;
+        public string EndServiceDate { get; set; } = string.Empty;
         public string ServiceType { get; set; } = string.Empty;
 
         [Column(TypeName = "decimal(18,2)")]

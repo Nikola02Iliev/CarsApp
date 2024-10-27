@@ -11,8 +11,8 @@ namespace WebAPICars.Mappers
             {
                 ServiceId = serviceModel.ServiceId,
                 CarId = serviceModel.CarId,
-                StartServiceDate = serviceModel.StartServiceDate,
-                EndServiceDate = serviceModel.EndServiceDate,
+                StartServiceDate = serviceModel.StartServiceDate.ToString("yyyy-MM-dd"),
+                EndServiceDate = serviceModel.EndServiceDate.ToString("yyyy-MM-dd"),
                 ServiceType = serviceModel.ServiceType,
                 Cost = serviceModel.Cost,
                 IsCarRepaired = serviceModel.IsCarRepaired
@@ -65,5 +65,7 @@ namespace WebAPICars.Mappers
                 Cost = servicePostDTO.Cost,
             };
         }
+
+        
     }
 }

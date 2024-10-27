@@ -15,6 +15,8 @@ namespace WebAPICars.Services.Interfaces
         Task PutCarOwnerId(Car car, int? ownerId);
         Task DeleteCar(Car car);
         bool LicensePlateExists(string licensePlate);
+        bool IsCarInService(int carId);
+        Task<bool> IsCarWithoutOwner(int carId);
 
     }
 }

@@ -97,18 +97,5 @@ namespace WebAPICars.Mappers
             };
         }
 
-        public static Owner ToOwnerModelFromPut(this Owner ownerModel) 
-        {
-            return new Owner
-            {
-                FirstName = ownerModel.FirstName,
-                LastName = ownerModel.LastName,
-                Age = ownerModel.Age,
-                Address = ownerModel.Address,
-                PhoneNumber = ownerModel.PhoneNumber,
-                Email = ownerModel.Email
-            };
-        
-        }
     }
 }

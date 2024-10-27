@@ -12,7 +12,7 @@ using WebAPICars.Context;
 namespace WebAPICars.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241023053522_Initial")]
+    [Migration("20241027094249_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

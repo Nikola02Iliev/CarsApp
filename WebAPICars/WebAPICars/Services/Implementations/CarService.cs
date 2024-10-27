@@ -9,13 +9,15 @@ namespace WebAPICars.Services.Implementations
     public class CarService : ICarService
     {
         private readonly ICarRepository _carRepository;
+        private readonly IServiceRepository _serviceRepository;
 
-        public CarService(ICarRepository carRepository)
+        public CarService(ICarRepository carRepository, IServiceRepository serviceRepository)
         {
             _carRepository = carRepository;
+            _serviceRepository = serviceRepository;
         }
 
-        
+
         public IQueryable<Car> GetAllCars(CarQueries carQueries)
         {
             var cars = _carRepository.GetAllCars();
@@ -271,6 +273,27 @@ namespace WebAPICars.Services.Implementations
         {
             _carRepository.PutCarOwnerId(car, ownerId);
             await _carRepository.SaveChangesAsync();
+        }
+
+        public bool IsCarInService(int carId)
+        {
+
+            return _serviceRepository.GetAllServices().Any(s => s.CarId == carId);
+            
+        }
+
+        public async Task<bool> IsCarWithoutOwner(int carId)
+        {
+            var car = await _carRepository.GetCarByIdAsync(carId);
+
+            if (car.OwnerId == null) 
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

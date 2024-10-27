@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Projects\\CarsApp\\WebAPICars\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 487,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -59,19 +54,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ServicesController.cs",
-              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Controllers\\ServicesController.cs",
-              "RelativeDocumentMoniker": "WebAPICars\\Controllers\\ServicesController.cs",
-              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Controllers\\ServicesController.cs",
-              "RelativeToolTip": "WebAPICars\\Controllers\\ServicesController.cs",
-              "ViewState": "AQIAADoAAAAAAAAAAAAkwEAAAABRAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T15:57:04.707Z",
-              "EditorCaption": ""
             }
           ]
         }

@@ -10,6 +10,7 @@ namespace WebAPICars.Repositories.Interfaces
         Task<Service> GetServiceByIdAsync(int? id);
         Task PostServiceAsync(Service service);
         void PutService(Service service, ServicePutDTO servicePutDTO);
+        void PutServiceIsCarRepairedToTrue(Service service);
         void DeleteService(Service service);
         Task SaveChangesAsync();       
     }

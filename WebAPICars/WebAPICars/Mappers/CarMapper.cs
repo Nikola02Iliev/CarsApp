@@ -107,17 +107,5 @@ namespace WebAPICars.Mappers
                 LicensePlate = carPostDTO.LicensePlate
             };
         }
-
-        public static Car ToCarModelFromPut(this CarPutDTO carPutDTO)
-        {
-            return new Car
-            {
-                Model = carPutDTO.Model,
-                Price = carPutDTO.Price,
-                Year = carPutDTO.Year,
-                Color = carPutDTO.Color,
-                LicensePlate = carPutDTO.LicensePlate
-            };
-        }
     }
 }

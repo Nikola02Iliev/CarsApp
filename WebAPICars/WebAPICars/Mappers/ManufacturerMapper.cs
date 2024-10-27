@@ -68,14 +68,6 @@ namespace WebAPICars.Mappers
             };
         }
 
-        public static Manufacturer ToManufacturerModelFromPut(this ManufacturerPutDTO manufacturerPutDTO)
-        {
-            return new Manufacturer
-            {
-                ManufacturerName = manufacturerPutDTO.ManufacturerName,
-                Country = manufacturerPutDTO.Country,
-                EstablishedYear = manufacturerPutDTO.EstablishedYear
-            };
-        }
+        
     }
 }
