@@ -17,6 +17,8 @@ namespace WebAPICars.DTOs.CarDTOs
         public int Year { get; set; }
         public string Color { get; set; } = string.Empty;
         public string LicensePlate { get; set; } = string.Empty;
+        public string ImagePath { get; set; } = string.Empty;
+
         public ManufacturerGetDTOInCar? Manufacturer { get; set; }
         public OwnerGetDTOInCar? Owner { get; set; }
     }

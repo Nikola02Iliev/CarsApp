@@ -102,6 +102,16 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
+        [HttpDelete("delete-all-owners")]
+        public async Task<IActionResult> DeleteAllOwners()
+        {
+            var owners = _ownerService.GetAllOwnersForDeletion();
+
+            await _ownerService.DeleteAllOwners(owners);
+
+            return NoContent();
+        }
+
 
         [HttpGet("after-post/{id}")]
         [ApiExplorerSettings(IgnoreApi  = true)]

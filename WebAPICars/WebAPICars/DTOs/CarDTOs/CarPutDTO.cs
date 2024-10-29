@@ -27,5 +27,8 @@ namespace WebAPICars.DTOs.CarDTOs
         [ValidationForLicensePlate]
         public string LicensePlate { get; set; } = string.Empty;
 
+        public IFormFile? Image { get; set; }
+
+
     }
 }

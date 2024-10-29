@@ -9,13 +9,14 @@ namespace WebAPICars.Services.Implementations
     public class OwnerService : IOwnerService
     {
         private readonly IOwnerRepository _ownerRepository;
-
-        public OwnerService(IOwnerRepository ownerRepository)
+        private readonly ICarRepository _carRepository;
+        public OwnerService(IOwnerRepository ownerRepository, ICarRepository carRepository)
         {
             _ownerRepository = ownerRepository;
+            _carRepository = carRepository;
         }
 
-       
+
 
         public IQueryable<Owner> GetAllOwners(OwnerQueries ownerQueries)
         {
@@ -140,6 +141,13 @@ namespace WebAPICars.Services.Implementations
             return owners.Skip(skipNumber).Take(takeNumber);
         }
 
+        public IEnumerable<Owner> GetAllOwnersForDeletion()
+        {
+            var owners = _ownerRepository.GetAllOwners().AsEnumerable();
+
+            return owners;
+        }
+
         public async Task<Owner> GetOwnerByIdAsync(int? id)
         {
             var owner = await _ownerRepository.GetOwnerByIdAsync(id);
@@ -165,6 +173,24 @@ namespace WebAPICars.Services.Implementations
             await _ownerRepository.SaveChangesAsync();
         }
 
+        public async Task DeleteAllOwners(IEnumerable<Owner> owners)
+        {
+            
+
+            foreach (var owner in owners) 
+            {
+                var cars = _carRepository.GetAllCars().Where(c => c.OwnerId == owner.OwnerId).AsEnumerable();
+
+                foreach(var car in cars)
+                {
+                    car.OwnerId = null;
+                }
+
+            }
+            _ownerRepository.DeleteOwners(owners);
+            await _ownerRepository.SaveChangesAsync();
+        }
+
         public bool OwnerExists(int id)
         {
             return _ownerRepository.GetAllOwners().Any(o => o.OwnerId == id);
@@ -179,5 +205,7 @@ namespace WebAPICars.Services.Implementations
         {
             return _ownerRepository.GetAllOwners().Any(o => o.Email == email);
         }
+
+        
     }
 }

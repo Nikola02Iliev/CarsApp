@@ -16,7 +16,8 @@ namespace WebAPICars.Mappers
                 Price = carModel.Price,
                 Year = carModel.Year,
                 Color = carModel.Color,
-                LicensePlate = carModel.LicensePlate
+                LicensePlate = carModel.LicensePlate,
+                ImagePath = carModel.ImagePath
             
             };
         }
@@ -53,6 +54,7 @@ namespace WebAPICars.Mappers
                 Year = carModel.Year,
                 Color = carModel.Color,
                 LicensePlate = carModel.LicensePlate,
+                ImagePath = carModel.ImagePath,
                 Manufacturer = carModel.Manufacturer.ToManufacturerGetDTOInCar(),
                 Owner = carModel.Owner.ToOwnerGetDTOInCar()
             };
@@ -104,7 +106,8 @@ namespace WebAPICars.Mappers
                 Price = carPostDTO.Price,
                 Year = carPostDTO.Year,
                 Color = carPostDTO.Color,
-                LicensePlate = carPostDTO.LicensePlate
+                LicensePlate = carPostDTO.LicensePlate,
+                ImagePath = carPostDTO.Image.ToString(),
             };
         }
     }

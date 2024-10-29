@@ -1,6 +1,7 @@
 ﻿using WebAPICars.DTOs.ManufacturerDTOs;
 using WebAPICars.Filters;
 using WebAPICars.Models;
+using WebAPICars.Repositories.Implementations;
 using WebAPICars.Repositories.Interfaces;
 using WebAPICars.Services.Interfaces;
 
@@ -10,11 +11,13 @@ namespace WebAPICars.Services.Implementations
     {
         private readonly IManufacturerRepository _manufacturerRepository;
         private readonly ICarRepository _carRepository;
+        private readonly IServiceRepository _serviceRepository;
 
-        public ManufacturerService(IManufacturerRepository manufacturerRepository, ICarRepository carRepository)
+        public ManufacturerService(IManufacturerRepository manufacturerRepository, ICarRepository carRepository, IServiceRepository serviceRepository)
         {
             _manufacturerRepository = manufacturerRepository;
             _carRepository = carRepository;
+            _serviceRepository = serviceRepository;
         }
 
         public IQueryable<Manufacturer> GetAllManufacturers(ManufacturerQueries manufacturerQueries)
@@ -83,6 +86,13 @@ namespace WebAPICars.Services.Implementations
             return manufacturers.Skip(skipNumber).Take(takeNumber);
         }
 
+        public IEnumerable<Manufacturer> GetAllManufacturersForDeletion()
+        {
+            var manufacturers = _manufacturerRepository.GetAllManufacturers().AsEnumerable();
+
+            return manufacturers;
+        }
+
         public async Task<Manufacturer> GetManufacturerByIdAsync(int? id)
         {
             var manufacturer = await _manufacturerRepository.GetManufacturerByIdAsync(id);
@@ -104,11 +114,42 @@ namespace WebAPICars.Services.Implementations
 
         public async Task DeleteManufacturer(Manufacturer manufacturer)
         {
-            var carsToDelete = _carRepository.GetAllCars().Where(c => c.ManufacturerId == manufacturer.ManufacturerId).ToList();
+            var carsToDelete = _carRepository.GetAllCars().Where(c => c.ManufacturerId == manufacturer.ManufacturerId).AsEnumerable();
+
+            foreach (var car in carsToDelete) 
+            {
+                var service = _serviceRepository.GetAllServices().SingleOrDefault(s => s.CarId == car.CarId);
+                if (service != null)
+                {
+                    _serviceRepository.DeleteService(service);
+                }
+            }
 
             _carRepository.DeleteCars(carsToDelete);
 
             _manufacturerRepository.DeleteManufacturer(manufacturer);
+            await _manufacturerRepository.SaveChangesAsync();
+        }
+
+        public async Task DeleteAllManufacturers(IEnumerable<Manufacturer> manufacturers)
+        {
+            foreach(var manufacturer in manufacturers)
+            {
+                var carsToDelete = _carRepository.GetAllCars().Where(c => c.ManufacturerId == manufacturer.ManufacturerId).AsEnumerable();
+                foreach(var car in carsToDelete)
+                {
+                    var service = _serviceRepository.GetAllServices().SingleOrDefault(s => s.CarId == car.CarId);
+                    if(service != null)
+                    {
+                        _serviceRepository.DeleteService(service);
+                    }
+
+                }
+
+                _carRepository.DeleteCars(carsToDelete);
+                _manufacturerRepository.DeleteManufacturer(manufacturer);
+            }
+
             await _manufacturerRepository.SaveChangesAsync();
         }
 
@@ -123,6 +164,6 @@ namespace WebAPICars.Services.Implementations
             return _manufacturerRepository.GetAllManufacturers().Any(m => m.ManufacturerName == manufacturerName);
         }
 
-
+        
     }
 }

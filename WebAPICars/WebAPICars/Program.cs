@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using WebAPICars.Context;
 using WebAPICars.Repositories.Implementations;
 using WebAPICars.Repositories.Interfaces;
@@ -25,6 +26,7 @@ namespace WebAPICars
             builder.Services.AddScoped<IOwnerService, OwnerService>();
             builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
             builder.Services.AddScoped<IServiceService, ServiceService>();
+            builder.Services.AddScoped<IImageService, ImageService>();
             builder.Services.AddControllers();
             builder.Services.AddCors(options =>
             {
@@ -48,7 +50,6 @@ namespace WebAPICars
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
 
 
             app.UseAuthorization();

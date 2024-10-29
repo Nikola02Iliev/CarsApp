@@ -54,9 +54,16 @@ namespace WebAPICars.Repositories.Implementations
             _dbSet.Remove(owner);
         }
 
+        public void DeleteOwners(IEnumerable<Owner> owners)
+        {
+            _dbSet.RemoveRange(owners);
+        }
+
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
         }
+
+        
     }
 }

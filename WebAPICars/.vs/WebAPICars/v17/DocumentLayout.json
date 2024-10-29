@@ -1,7 +1,32 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Projects\\CarsApp\\WebAPICars\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\controllers\\ownerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\controllers\\ownerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\services\\implementations\\ownerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\services\\implementations\\ownerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\services\\interfaces\\iownerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\services\\interfaces\\iownerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\repositories\\interfaces\\iownerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\repositories\\interfaces\\iownerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\repositories\\implementations\\ownerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\repositories\\implementations\\ownerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\repositories\\interfaces\\icarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\repositories\\interfaces\\icarrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 487,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 16,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,6 +79,84 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OwnerRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Repositories\\Implementations\\OwnerRepository.cs",
+              "RelativeDocumentMoniker": "WebAPICars\\Repositories\\Implementations\\OwnerRepository.cs",
+              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Repositories\\Implementations\\OwnerRepository.cs",
+              "RelativeToolTip": "WebAPICars\\Repositories\\Implementations\\OwnerRepository.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAowDoAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T16:30:50.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IOwnerRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Repositories\\Interfaces\\IOwnerRepository.cs",
+              "RelativeDocumentMoniker": "WebAPICars\\Repositories\\Interfaces\\IOwnerRepository.cs",
+              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Repositories\\Interfaces\\IOwnerRepository.cs",
+              "RelativeToolTip": "WebAPICars\\Repositories\\Interfaces\\IOwnerRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T16:30:17.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ICarRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Repositories\\Interfaces\\ICarRepository.cs",
+              "RelativeDocumentMoniker": "WebAPICars\\Repositories\\Interfaces\\ICarRepository.cs",
+              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Repositories\\Interfaces\\ICarRepository.cs",
+              "RelativeToolTip": "WebAPICars\\Repositories\\Interfaces\\ICarRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T16:30:17.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IOwnerService.cs",
+              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Services\\Interfaces\\IOwnerService.cs",
+              "RelativeDocumentMoniker": "WebAPICars\\Services\\Interfaces\\IOwnerService.cs",
+              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Services\\Interfaces\\IOwnerService.cs",
+              "RelativeToolTip": "WebAPICars\\Services\\Interfaces\\IOwnerService.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA4AAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T16:06:24.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OwnerService.cs",
+              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Services\\Implementations\\OwnerService.cs",
+              "RelativeDocumentMoniker": "WebAPICars\\Services\\Implementations\\OwnerService.cs",
+              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Services\\Implementations\\OwnerService.cs",
+              "RelativeToolTip": "WebAPICars\\Services\\Implementations\\OwnerService.cs",
+              "ViewState": "AQIAAKkAAAAAAAAAAAA/wL8AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T16:06:17.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OwnersController.cs",
+              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Controllers\\OwnersController.cs",
+              "RelativeDocumentMoniker": "WebAPICars\\Controllers\\OwnersController.cs",
+              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Controllers\\OwnersController.cs",
+              "RelativeToolTip": "WebAPICars\\Controllers\\OwnersController.cs",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAYwHAAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-29T16:04:53.483Z",
+              "EditorCaption": ""
             }
           ]
         }

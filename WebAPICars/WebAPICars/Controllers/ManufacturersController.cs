@@ -13,10 +13,12 @@ namespace WebAPICars.Controllers
     {
 
         private readonly IManufacturerService _manufacturerService;
+        private readonly IImageService _imageService;
 
-        public ManufacturersController(IManufacturerService manufacturerService)
+        public ManufacturersController(IManufacturerService manufacturerService, IImageService imageService)
         {
             _manufacturerService = manufacturerService;
+            _imageService = imageService;
         }
 
 
@@ -95,7 +97,22 @@ namespace WebAPICars.Controllers
                 return NotFound($"Manufacturer with {id} id does not exist!");
             }
 
+            _imageService.DeleteImages(existingManufacturer.Cars.AsEnumerable());
+
             await _manufacturerService.DeleteManufacturer(existingManufacturer);
+            
+
+            return NoContent();
+        }
+
+        [HttpDelete("delete-all-manufacturers")]
+        public async Task<ActionResult> DeleteAllManufacturers()
+        {
+            var manufacturers = _manufacturerService.GetAllManufacturersForDeletion();
+
+            _imageService.DeleteImagesAfterDeletionOfManufacturers(manufacturers);
+
+            await _manufacturerService.DeleteAllManufacturers(manufacturers);
 
             return NoContent();
         }

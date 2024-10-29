@@ -16,6 +16,7 @@ namespace WebAPICars.Models
         public int Year { get; set; }
         public string Color {  get; set; } = string.Empty;
         public string LicensePlate { get; set; } = string.Empty;
+        public string ImagePath {  get; set; } = string.Empty;
         public Manufacturer? Manufacturer { get; set; }
         public Owner? Owner { get; set; }
 

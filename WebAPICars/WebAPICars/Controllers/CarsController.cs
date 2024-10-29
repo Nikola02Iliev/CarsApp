@@ -10,6 +10,7 @@ using WebAPICars.DTOs.CarDTOs;
 using WebAPICars.Mappers;
 using WebAPICars.Models;
 using WebAPICars.Queries;
+using WebAPICars.Services.Implementations;
 using WebAPICars.Services.Interfaces;
 
 namespace WebAPICars.Controllers
@@ -21,12 +22,16 @@ namespace WebAPICars.Controllers
         private readonly ICarService _carService;
         private readonly IManufacturerService _manufacturerService;
         private readonly IOwnerService _ownerService;
+        private readonly IServiceService _serviceService;
+        private readonly IImageService _imageService;
 
-        public CarsController(ICarService carService, IManufacturerService manufacturerService, IOwnerService ownerService)
+        public CarsController(ICarService carService, IManufacturerService manufacturerService, IOwnerService ownerService, IImageService imageService, IServiceService serviceService)
         {
             _carService = carService;
             _manufacturerService = manufacturerService;
             _ownerService = ownerService;
+            _imageService = imageService;
+            _serviceService = serviceService;
         }
 
         // GET: api/Cars
@@ -81,6 +86,10 @@ namespace WebAPICars.Controllers
 
             try
             {
+                if (carPutDTO.Image != null) 
+                {
+                    await _imageService.UpdateImageAsync(carPutDTO, existingCar);
+                }
                 await _carService.PutCar(existingCar, carPutDTO);
             }
             catch (DbUpdateConcurrencyException)
@@ -135,14 +144,15 @@ namespace WebAPICars.Controllers
 
             var ToCarModel = carPostDTO.ToCarModel();
 
+            await _imageService.SaveImageAsync(carPostDTO, ToCarModel);
+
             await _carService.PostCarAsync(ToCarModel, manufacturerId, ownerId);
 
             var carToGetDTOAfterPost = ToCarModel.ToCarGetDTOAfterPost();
 
-
             return CreatedAtAction("GetCarAfterPost", new { id = ToCarModel.CarId }, carToGetDTOAfterPost);
-
         }
+
 
         [HttpPost("post-car-without-owner/{manufacturerId}")]
         public async Task<ActionResult> PostCarWithoutOwner(CarPostDTO carPostDTO, int manufacturerId)
@@ -153,6 +163,8 @@ namespace WebAPICars.Controllers
             }
 
             var ToCarModel = carPostDTO.ToCarModel();
+
+            await _imageService.SaveImageAsync(carPostDTO, ToCarModel);
 
             await _carService.PostCarWithoutOwnerAsync(ToCarModel, manufacturerId);
 
@@ -167,13 +179,29 @@ namespace WebAPICars.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCar(int id)
         {
+            
             var existingCar = await _carService.GetCarByIdAsync(id);
             if (existingCar == null)
             {
                 return NotFound($"Car with {id} id does not exist!");
             }
 
+            _imageService.DeleteImage(existingCar);
+
             await _carService.DeleteCar(existingCar);
+
+
+            return NoContent();
+        }
+
+        [HttpDelete("delete-all-cars")]
+        public async Task<IActionResult> DeleteAllCars()
+        {
+            var cars = _carService.GetAllCarsForDeletion();
+
+            _imageService.DeleteImages(cars);
+
+            await _carService.DeleteAllCars(cars);
 
             return NoContent();
         }

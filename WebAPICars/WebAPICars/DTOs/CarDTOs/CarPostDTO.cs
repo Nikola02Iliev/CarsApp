@@ -25,5 +25,8 @@ namespace WebAPICars.DTOs.CarDTOs
         [Required(ErrorMessage = "This field is required")]
         [ValidationForLicensePlate]
         public string LicensePlate { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "This field is required")]
+        public IFormFile? Image { get; set; }
     }
 }

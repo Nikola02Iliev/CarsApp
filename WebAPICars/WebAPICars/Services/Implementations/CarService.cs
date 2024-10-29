@@ -123,6 +123,13 @@ namespace WebAPICars.Services.Implementations
             return cars.Skip(skipNumber).Take(takeNumber);
         }
 
+        public IEnumerable<Car> GetAllCarsForDeletion()
+        {
+            var cars = _carRepository.GetAllCars().AsEnumerable();
+
+            return cars;
+        }
+
         public async Task<Car> GetCarByIdAsync(int? id)
         {
             var car = await _carRepository.GetCarByIdAsync(id);
@@ -146,8 +153,33 @@ namespace WebAPICars.Services.Implementations
 
         public async Task DeleteCar(Car car)
         {
+            var service = _serviceRepository.GetAllServices().SingleOrDefault(s => s.CarId == car.CarId);
+            if (service != null) 
+            {
+                _serviceRepository.DeleteService(service);
+            }
+
             _carRepository.DeleteCar(car);
+
             await _carRepository.SaveChangesAsync();
+        }
+
+        public async Task DeleteAllCars(IEnumerable<Car> cars)
+        {
+            foreach(var car in cars)
+            {
+                var service = _serviceRepository.GetAllServices().SingleOrDefault(s => s.CarId == car.CarId);
+                if(service != null)
+                {
+                    _serviceRepository.DeleteService(service);
+                }
+
+                _carRepository.DeleteCar(car);
+
+            }
+
+            await _carRepository.SaveChangesAsync();
+
         }
 
         public bool LicensePlateExists(string licensePlate)
@@ -295,5 +327,7 @@ namespace WebAPICars.Services.Implementations
                 return false;
             }
         }
+
+        
     }
 }

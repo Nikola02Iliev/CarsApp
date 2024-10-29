@@ -12,7 +12,7 @@ using WebAPICars.Context;
 namespace WebAPICars.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20241027094249_Initial")]
+    [Migration("20241029145016_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -34,6 +34,10 @@ namespace WebAPICars.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CarId"));
 
                     b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

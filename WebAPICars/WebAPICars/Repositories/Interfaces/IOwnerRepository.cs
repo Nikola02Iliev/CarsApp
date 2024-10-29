@@ -10,6 +10,7 @@ namespace WebAPICars.Repositories.Interfaces
         Task PostOwnerAsync (Owner owner);
         void PutOwner(Owner owner, OwnerPutDTO ownerPutDTO);
         void DeleteOwner(Owner owner);
+        void DeleteOwners(IEnumerable<Owner> owners);
         Task SaveChangesAsync();
     }
 }
