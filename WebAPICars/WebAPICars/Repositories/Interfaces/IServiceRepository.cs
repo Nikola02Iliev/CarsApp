@@ -12,6 +12,7 @@ namespace WebAPICars.Repositories.Interfaces
         void PutService(Service service, ServicePutDTO servicePutDTO);
         void PutServiceIsCarRepairedToTrue(Service service);
         void DeleteService(Service service);
+        void DeleteAllServices(IEnumerable<Service> services);
         Task SaveChangesAsync();       
     }
 }

@@ -58,6 +58,11 @@ namespace WebAPICars.Repositories.Implementations
             _dbSet.Remove(service);
         }
 
+        public void DeleteAllServices(IEnumerable<Service> services)
+        {
+            _dbSet.RemoveRange(services);
+        }
+
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();

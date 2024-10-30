@@ -321,6 +321,13 @@ namespace WebAPICars.Services.Implementations
             return services.Skip(skipNumber).Take(takeNumber);
         }
 
+        public IEnumerable<Service> GetAllServicesForDeletion()
+        {
+            var services = _serviceRepository.GetAllServices().AsEnumerable();
+
+            return services;
+        }
+
         public async Task<Service> GetServiceByIdAsync(int? id)
         {
             var service = await _serviceRepository.GetServiceByIdAsync(id);
@@ -359,6 +366,12 @@ namespace WebAPICars.Services.Implementations
             await _serviceRepository.SaveChangesAsync();
         }
 
-        
+        public async Task DeleteAllServices(IEnumerable<Service> services)
+        {
+            _serviceRepository.DeleteAllServices(services);
+            await _serviceRepository.SaveChangesAsync();
+        }
+
+
     }
 }

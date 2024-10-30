@@ -178,6 +178,16 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
+        [HttpDelete("delete-all-services")]
+        public async Task<IActionResult> DeleteAllServices()
+        {
+            var services = _serviceService.GetAllServicesForDeletion();
+
+            await _serviceService.DeleteAllServices(services);
+
+            return NoContent();
+        }
+
         [HttpGet("after-post/{id}")]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult<ServiceGetDTOAfterPost>> GetServiceAfterPost(int? id)
