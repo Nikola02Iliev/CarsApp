@@ -37,6 +37,15 @@ namespace WebAPICars.Mappers
 
         public static OwnerGetDTOInCar ToOwnerGetDTOInCar(this Owner ownerModel)
         {
+            if(ownerModel == null)
+            {
+                var owner = new OwnerGetDTOInCar();
+
+                owner = null;
+
+                return owner;
+            }
+
             return new OwnerGetDTOInCar
             {
                 OwnerId = ownerModel.OwnerId,

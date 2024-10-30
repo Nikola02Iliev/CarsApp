@@ -28,7 +28,8 @@ namespace WebAPICars.Mappers
             {
                 CarId = carModel.CarId,
                 Model = carModel.Model,
-                LicensePlate = carModel.LicensePlate
+                LicensePlate = carModel.LicensePlate,
+                ImagePath = carModel.ImagePath
             };
         }
         public static CarListDTOInOwner ToCarListDTOInOwner(this Car carModel)
@@ -38,6 +39,7 @@ namespace WebAPICars.Mappers
                 CarId = carModel.CarId,
                 Model = carModel.Model,
                 LicensePlate = carModel.LicensePlate,
+                ImagePath = carModel.ImagePath,
                 Manufacturer = carModel.Manufacturer.ToManufacturerDTOInCarListDTOInOwner()
             };
         }
@@ -82,6 +84,7 @@ namespace WebAPICars.Mappers
                 CarId = carModel.CarId,
                 Model = carModel.Model,
                 LicensePlate = carModel.LicensePlate,
+                ImagePath= carModel.ImagePath,
                 Owner = carModel.Owner.ToOwnerGetDTOInCarGetDTOInService()
             };
         }

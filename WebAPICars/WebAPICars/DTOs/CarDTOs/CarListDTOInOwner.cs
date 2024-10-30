@@ -1,4 +1,5 @@
-﻿using WebAPICars.DTOs.ManufacturerDTOs;
+﻿using System.Drawing;
+using WebAPICars.DTOs.ManufacturerDTOs;
 using WebAPICars.Models;
 
 namespace WebAPICars.DTOs.CarDTOs
@@ -8,6 +9,7 @@ namespace WebAPICars.DTOs.CarDTOs
         public int CarId { get; set; }
         public string Model { get; set; } = string.Empty;
         public string LicensePlate { get; set; } = string.Empty;
+        public string ImagePath { get; set; } = string.Empty;
         public ManufacturerDTOInCarListDTOInOwner? Manufacturer { get; set; }
     }
 }

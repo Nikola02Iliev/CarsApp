@@ -10,11 +10,13 @@ namespace WebAPICars.Services.Implementations
     {
         private readonly ICarRepository _carRepository;
         private readonly IServiceRepository _serviceRepository;
+        private readonly IOwnerRepository _ownerRepository;
 
-        public CarService(ICarRepository carRepository, IServiceRepository serviceRepository)
+        public CarService(ICarRepository carRepository, IServiceRepository serviceRepository, IOwnerRepository ownerRepository)
         {
             _carRepository = carRepository;
             _serviceRepository = serviceRepository;
+            _ownerRepository = ownerRepository;
         }
 
 
@@ -133,6 +135,11 @@ namespace WebAPICars.Services.Implementations
         public async Task<Car> GetCarByIdAsync(int? id)
         {
             var car = await _carRepository.GetCarByIdAsync(id);
+            
+            var owner = _ownerRepository.GetAllOwners().SingleOrDefault(o => o.OwnerId == car.OwnerId);
+
+            car.Owner = owner;
+
 
             return car;
         }
