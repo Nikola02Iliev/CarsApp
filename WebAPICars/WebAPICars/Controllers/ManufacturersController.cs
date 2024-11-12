@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPICars.DTOs.ManufacturerDTOs;
 using WebAPICars.Filters;
@@ -21,8 +22,7 @@ namespace WebAPICars.Controllers
             _imageService = imageService;
         }
 
-
-        // GET: api/Manufacturers
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult GetManufacturers([FromQuery] ManufacturerQueries manufacturerQueries)
         {
@@ -33,7 +33,7 @@ namespace WebAPICars.Controllers
             return Ok(manufacturersToListDTO);
         }
 
-        // GET: api/Manufacturers/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<ManufacturerGetDTO>> GetManufacturer(int? id)
         {
@@ -50,8 +50,7 @@ namespace WebAPICars.Controllers
             return Ok(manufacturerToGetDTO);
         }
 
-        // PUT: api/Manufacturers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutManufacturer(int id, ManufacturerPutDTO manufacturerPutDTO)
         {
@@ -73,8 +72,8 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        // POST: api/Manufacturers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> PostManufacturer(ManufacturerPostDTO manufacturerPostDTO)
         {
@@ -87,7 +86,7 @@ namespace WebAPICars.Controllers
             return CreatedAtAction("GetManufacturerAfterPost", new { id = ToManufacturerModel.ManufacturerId }, manufacturerToGetDTOAfterPost);
         }
 
-        // DELETE: api/Manufacturers/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteManufacturer(int id)
         {
@@ -105,9 +104,11 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("delete-all-manufacturers")]
         public async Task<ActionResult> DeleteAllManufacturers()
         {
+            
             var manufacturers = _manufacturerService.GetAllManufacturersForDeletion();
 
             _imageService.DeleteImagesAfterDeletionOfManufacturers(manufacturers);

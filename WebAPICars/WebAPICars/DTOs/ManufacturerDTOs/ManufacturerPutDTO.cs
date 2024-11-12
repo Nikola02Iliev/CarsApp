@@ -5,18 +5,15 @@ namespace WebAPICars.DTOs.ManufacturerDTOs
 {
     public class ManufacturerPutDTO
     {
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(50, ErrorMessage = "This field can't be more than 50 characters")]
-        [ValidationForManufacturerName]
+        [ValidationsForManufacturerName]
         public string ManufacturerName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(50, ErrorMessage = "This field can't be more than 50 characters")]
+        [ValidationsForCountry]
         public string Country { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "This field is required")]
-        [ValidationForEstablishedYear]
-        public int EstablishedYear { get; set; }
+        [ValidationsForEstablishedYear]
+        public int? EstablishedYear { get; set; }
+
 
     }
 }

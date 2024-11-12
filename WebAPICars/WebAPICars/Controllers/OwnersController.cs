@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPICars.Context;
 using WebAPICars.DTOs.OwnerDTOs;
@@ -20,9 +21,7 @@ namespace WebAPICars.Controllers
             _ownerService = ownerService;
         }
 
-
-
-        // GET: api/Owners
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult GetOwners([FromQuery] OwnerQueries ownerQueries)
         {
@@ -33,7 +32,7 @@ namespace WebAPICars.Controllers
             return Ok(ToOwnerListDTO);
         }
 
-        // GET: api/Owners/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<OwnerGetDTO>> GetOwner(int? id)
         {
@@ -49,8 +48,7 @@ namespace WebAPICars.Controllers
             return Ok(ToOwnerGetDTO);
         }
 
-        // PUT: api/Owners/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOwner(int id, OwnerPutDTO ownerPutDTO)
         {
@@ -72,8 +70,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        // POST: api/Owners
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> PostOwner(OwnerPostDTO ownerPostDTO)
         {
@@ -87,7 +84,7 @@ namespace WebAPICars.Controllers
             return CreatedAtAction("GetOwnerAfterPost", new { id = ToOwnerModel.OwnerId }, OwnerGetDTOAfterPost);
         }
 
-        // DELETE: api/Owners/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOwner(int id)
         {
@@ -102,6 +99,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("delete-all-owners")]
         public async Task<IActionResult> DeleteAllOwners()
         {

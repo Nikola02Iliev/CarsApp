@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebAPICars.Context;
 using WebAPICars.DTOs.CarDTOs;
+using WebAPICars.DTOs.ManufacturerDTOs;
 using WebAPICars.Models;
 using WebAPICars.Repositories.Interfaces;
 
@@ -46,6 +47,7 @@ namespace WebAPICars.Repositories.Implementations
             car.Year = carPutDTO.Year;
             car.Color = carPutDTO.Color;
             car.LicensePlate = carPutDTO.LicensePlate;
+            car.RowVersion = carPutDTO.RowVersion;
         }
 
         public void PutCarOwnerId(Car car, int? ownerId)

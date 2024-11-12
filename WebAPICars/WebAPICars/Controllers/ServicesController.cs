@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using WebAPICars.DTOs.ServiceDTOs;
@@ -23,7 +24,7 @@ namespace WebAPICars.Controllers
 
 
 
-        // GET: api/Services
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult GetServices([FromQuery] ServiceQueries serviceQueries)
         {
@@ -35,6 +36,7 @@ namespace WebAPICars.Controllers
 
         }
 
+        [AllowAnonymous]
         [HttpGet("repaired-cars")]
         public IActionResult GetServicesWihtRepairedCars([FromQuery] ServiceQueries serviceQueries)
         {
@@ -46,6 +48,7 @@ namespace WebAPICars.Controllers
 
         }
 
+        [AllowAnonymous]
         [HttpGet("not-repaired-cars")]
         public IActionResult GetServicesWihtNotRepairedCars([FromQuery] ServiceQueries serviceQueries)
         {
@@ -57,7 +60,7 @@ namespace WebAPICars.Controllers
 
         }
 
-        // GET: api/Services/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceGetDTO>> GetService(int? id)
         {
@@ -73,8 +76,7 @@ namespace WebAPICars.Controllers
             return Ok(ToServiceGetDTO);
         }
 
-        // PUT: api/Services/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutService(int id, ServicePutDTO servicePutDTO)
         {
@@ -93,7 +95,7 @@ namespace WebAPICars.Controllers
 
             if (startServiceDateOnly > endServiceDateOnly) 
             {
-                return BadRequest($"End service date must be later than {startServiceDateOnly:yyyy-MM-dd}");
+                return BadRequest($"End service date must be later than {startServiceDateOnly:yyyy-MM-dd}!");
             }
 
             try
@@ -108,6 +110,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("repair-car/{id}")]
         public async Task<IActionResult> PutServiceIsCarRepairToTrue(int? id)
         {
@@ -136,20 +139,19 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        //POST: api/Services
-        //To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost("{carId}")]
         public async Task<ActionResult> PostService(ServicePostDTO servicePostDTO, int carId)
         {
 
             if (_carService.IsCarInService(carId))
             {
-                return BadRequest("Car is already in service");
+                return BadRequest("Car is already in service!");
             }
 
             if(await _carService.IsCarWithoutOwner(carId))
             {
-                return BadRequest("Car has no owner");
+                return BadRequest("Car has no owner!");
             }
 
 
@@ -162,8 +164,7 @@ namespace WebAPICars.Controllers
             return CreatedAtAction("GetServiceAfterPost", new { id = ToServiceModel.ServiceId }, ToServiceGetDTOAfterPost);
         }
 
-
-        // DELETE: api/Services/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteService(int id)
         {
@@ -178,6 +179,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("delete-all-services")]
         public async Task<IActionResult> DeleteAllServices()
         {

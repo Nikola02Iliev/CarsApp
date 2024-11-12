@@ -12,7 +12,7 @@ namespace WebAPICars.DTOs.ServiceDTOs
         public string ServiceType { get; set; } = string.Empty;
 
         [Column(TypeName = "decimal(18,2)")]
-        public decimal Cost { get; set; }
+        public decimal? Cost { get; set; }
         public bool IsCarRepaired { get; set; }
 
     }

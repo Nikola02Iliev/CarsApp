@@ -5,30 +5,22 @@ namespace WebAPICars.DTOs.OwnerDTOs
 {
     public class OwnerPostDTO
     {
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(50, ErrorMessage = "This field can't be more than 50 characters")]
+        [ValidationsForFirstName]
         public string FirstName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(50, ErrorMessage = "This field can't be more than 50 characters")]
+        [ValidationsForLastName]
         public string LastName { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "This field is required")]
-        [ValidationForAge]
-        public int Age { get; set; }
+        [ValidationsForAge]
+        public int? Age { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(255, ErrorMessage = "This field can't be more than 255 characters")]
+        [ValidationsForAddress]
         public string Address { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(12, ErrorMessage = "This field can't be more than 12 characters")]
-        [ValidationForPhoneNumber]
+        [ValidationsForPhoneNumber]
         public string PhoneNumber { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(50, ErrorMessage = "This field can't be more than 50 characters")]
-        [ValidationForEmail]
+        [ValidationsForEmail]
         public string Email { get; set; } = string.Empty;
     }
 }

@@ -7,27 +7,26 @@ namespace WebAPICars.DTOs.CarDTOs
 {
     public class CarPutDTO
     {
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(30, ErrorMessage = "This field can't be more than 50 characters")]
+        [ValidationsForModel]
         public string Model { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "This field is required")]
-        [ValidationForPrice]
-        public decimal Price { get; set; }
+        [ValidationsForPrice]
+        public decimal? Price { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        [ValidationForYear]
-        public int Year { get; set; }
+        [ValidationsForYear]
+        public int? Year { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(20, ErrorMessage = "This field can't be more than 50 characters")]
+        [ValidationsForColor]
         public string Color { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "This field is required")]
-        [ValidationForLicensePlate]
+
+        [ValidationsForLicensePlate]
         public string LicensePlate { get; set; } = string.Empty;
 
+        [ValidationsForImage]
         public IFormFile? Image { get; set; }
+
+        public byte[] RowVersion { get; set; }
 
 
     }

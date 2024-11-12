@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +35,7 @@ namespace WebAPICars.Controllers
             _serviceService = serviceService;
         }
 
-        // GET: api/Cars
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult GetCars([FromQuery] CarQueries carQueries)
         {
@@ -46,6 +47,7 @@ namespace WebAPICars.Controllers
             
         }
 
+        [AllowAnonymous]
         [HttpGet("get-cars-without-owner")]
         public IActionResult GetCarsWithoutOwner([FromQuery] CarQueries carQueries)
         {
@@ -57,7 +59,7 @@ namespace WebAPICars.Controllers
 
         }
 
-        // GET: api/Cars/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<CarGetDTO>> GetCar(int? id)
         {
@@ -73,8 +75,7 @@ namespace WebAPICars.Controllers
             return Ok(carToGetDTO);
         }
 
-        // PUT: api/Cars/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCar(int id, CarPutDTO carPutDTO)
         {
@@ -100,6 +101,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("put-ownerid-car/{id}/{ownerId}")]
         public async Task<IActionResult> PutCar(int id, int ownerId)
         {
@@ -127,8 +129,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        // POST: api/Cars
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost("{manufacturerId}/{ownerId}")]
         public async Task<ActionResult> PostCar(CarPostDTO carPostDTO, int manufacturerId, int ownerId)
         {
@@ -153,7 +154,7 @@ namespace WebAPICars.Controllers
             return CreatedAtAction("GetCarAfterPost", new { id = ToCarModel.CarId }, carToGetDTOAfterPost);
         }
 
-
+        [Authorize]
         [HttpPost("post-car-without-owner/{manufacturerId}")]
         public async Task<ActionResult> PostCarWithoutOwner(CarPostDTO carPostDTO, int manufacturerId)
         {
@@ -175,7 +176,7 @@ namespace WebAPICars.Controllers
 
         }
 
-        // DELETE: api/Cars/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCar(int id)
         {
@@ -194,6 +195,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("delete-all-cars")]
         public async Task<IActionResult> DeleteAllCars()
         {
