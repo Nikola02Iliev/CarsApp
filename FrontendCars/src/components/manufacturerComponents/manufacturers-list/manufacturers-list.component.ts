@@ -13,11 +13,7 @@ export class ManufacturersListComponent implements OnInit {
   constructor(private manufacturerService: ManufacturerService) { }
 
   ngOnInit(): void {
-    this.manufacturerService.getManufacturers().subscribe(
-      (manufacturers)=>{
-        console.log(manufacturers);
-      }
-    )
+    
   }
 
 
