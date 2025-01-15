@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "pPDnPtkV5mbj+d92896Ere52L5y8/mJmPaDv27O5O3I=",
+  "Hash": "7Pr9fcY9BhEnEuB1mQ2Hria37vomE7/C0Z2zMgTUsnk=",
   "Source": "WebAPICars",
   "BasePath": "_content/WebAPICars",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

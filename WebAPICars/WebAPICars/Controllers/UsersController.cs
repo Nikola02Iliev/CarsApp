@@ -29,7 +29,7 @@ namespace WebAPICars.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult GetUsers()
         {
@@ -43,7 +43,7 @@ namespace WebAPICars.Controllers
             return Ok(users);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet("{username}")]
         public async Task<ActionResult<UserGetDTO>> GetUser(string username) 
         {
@@ -55,7 +55,7 @@ namespace WebAPICars.Controllers
         }
 
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserRegisterDTO userRegisterDTO)
         {
@@ -93,7 +93,7 @@ namespace WebAPICars.Controllers
             
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLoginDTO userLoginDTO)
         {
@@ -119,7 +119,7 @@ namespace WebAPICars.Controllers
             });
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPut("{username}")]
         public async Task<IActionResult> UpdateUser(string username, UserUpdateDTO userUpdateDTO)
         {
@@ -144,7 +144,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpDelete("{username}")]
         public async Task<IActionResult> DeleteUser(string username)
         {
@@ -155,7 +155,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpDelete]
         public async Task<IActionResult> DeleteAllUsers() 
         {

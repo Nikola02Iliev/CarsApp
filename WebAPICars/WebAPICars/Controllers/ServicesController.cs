@@ -24,7 +24,7 @@ namespace WebAPICars.Controllers
 
 
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet]
         public IActionResult GetServices([FromQuery] ServiceQueries serviceQueries)
         {
@@ -36,7 +36,7 @@ namespace WebAPICars.Controllers
 
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet("repaired-cars")]
         public IActionResult GetServicesWihtRepairedCars([FromQuery] ServiceQueries serviceQueries)
         {
@@ -48,7 +48,7 @@ namespace WebAPICars.Controllers
 
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet("not-repaired-cars")]
         public IActionResult GetServicesWihtNotRepairedCars([FromQuery] ServiceQueries serviceQueries)
         {
@@ -60,7 +60,7 @@ namespace WebAPICars.Controllers
 
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceGetDTO>> GetService(int? id)
         {
@@ -76,7 +76,7 @@ namespace WebAPICars.Controllers
             return Ok(ToServiceGetDTO);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutService(int id, ServicePutDTO servicePutDTO)
         {
@@ -110,7 +110,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPut("repair-car/{id}")]
         public async Task<IActionResult> PutServiceIsCarRepairToTrue(int? id)
         {
@@ -139,7 +139,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("{carId}")]
         public async Task<ActionResult> PostService(ServicePostDTO servicePostDTO, int carId)
         {
@@ -164,7 +164,7 @@ namespace WebAPICars.Controllers
             return CreatedAtAction("GetServiceAfterPost", new { id = ToServiceModel.ServiceId }, ToServiceGetDTOAfterPost);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteService(int id)
         {
@@ -179,7 +179,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpDelete("delete-all-services")]
         public async Task<IActionResult> DeleteAllServices()
         {

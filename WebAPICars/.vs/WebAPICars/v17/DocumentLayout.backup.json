@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Projects\\CarsApp\\WebAPICars\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\controllers\\manufacturerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\controllers\\manufacturerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|c:\\projects\\carsapp\\webapicars\\webapicars\\dtos\\manufacturerdtos\\manufacturerpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8E7A9D3-4ABB-4A8B-9004-06CC2CBD2CD4}|WebAPICars\\WebAPICars.csproj|solutionrelative:webapicars\\dtos\\manufacturerdtos\\manufacturerpostdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 487,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,45 +66,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "ManufacturerPostDTO.cs",
+              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\DTOs\\ManufacturerDTOs\\ManufacturerPostDTO.cs",
+              "RelativeDocumentMoniker": "WebAPICars\\DTOs\\ManufacturerDTOs\\ManufacturerPostDTO.cs",
+              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\DTOs\\ManufacturerDTOs\\ManufacturerPostDTO.cs",
+              "RelativeToolTip": "WebAPICars\\DTOs\\ManufacturerDTOs\\ManufacturerPostDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T14:20:19.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Program.cs",
               "RelativeDocumentMoniker": "WebAPICars\\Program.cs",
               "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Program.cs",
               "RelativeToolTip": "WebAPICars\\Program.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAYwEQAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAwIwAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:46:10.416Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ManufacturersController.cs",
-              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Controllers\\ManufacturersController.cs",
-              "RelativeDocumentMoniker": "WebAPICars\\Controllers\\ManufacturersController.cs",
-              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Controllers\\ManufacturersController.cs",
-              "RelativeToolTip": "WebAPICars\\Controllers\\ManufacturersController.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAArwG4AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:31:56.565Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "WebAPICars\\Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Projects\\CarsApp\\WebAPICars\\WebAPICars\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "WebAPICars\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAAJoAAAAAAAAAAAAAwKUAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-12T07:20:48.57Z",
+              "WhenOpened": "2025-01-10T08:52:50.991Z",
               "EditorCaption": ""
             }
           ]

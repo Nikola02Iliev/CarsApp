@@ -22,7 +22,7 @@ namespace WebAPICars.Controllers
             _imageService = imageService;
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet]
         public IActionResult GetManufacturers([FromQuery] ManufacturerQueries manufacturerQueries)
         {
@@ -33,7 +33,7 @@ namespace WebAPICars.Controllers
             return Ok(manufacturersToListDTO);
         }
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<ManufacturerGetDTO>> GetManufacturer(int? id)
         {
@@ -50,7 +50,7 @@ namespace WebAPICars.Controllers
             return Ok(manufacturerToGetDTO);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutManufacturer(int id, ManufacturerPutDTO manufacturerPutDTO)
         {
@@ -73,7 +73,7 @@ namespace WebAPICars.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public async Task<ActionResult> PostManufacturer(ManufacturerPostDTO manufacturerPostDTO)
         {
@@ -86,7 +86,7 @@ namespace WebAPICars.Controllers
             return CreatedAtAction("GetManufacturerAfterPost", new { id = ToManufacturerModel.ManufacturerId }, manufacturerToGetDTOAfterPost);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteManufacturer(int id)
         {
@@ -104,7 +104,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpDelete("delete-all-manufacturers")]
         public async Task<ActionResult> DeleteAllManufacturers()
         {
@@ -118,7 +118,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        [HttpGet("after-post/{id}")]
+        //[HttpGet("after-post/{id}")]
         [ApiExplorerSettings(IgnoreApi = true)]
         public async Task<ActionResult<ManufacturerGetDTOAfterPost>> GetManufacturerAfterPost(int? id)
         {

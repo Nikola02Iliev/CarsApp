@@ -90,14 +90,7 @@ namespace WebAPICars
             builder.Services.AddScoped<IImageService, ImageService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddControllers();
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowBlazorApp",
-                    builder => builder
-                        .WithOrigins("http://localhost:3000")
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-            });
+            
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -142,11 +135,15 @@ namespace WebAPICars
             }
 
 
+            app.UseCors((policy) =>
+            {
+                policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+            });
+            
+
             app.UseAuthentication();
+
             app.UseAuthorization();
-
-
-            app.UseCors("AllowBlazorApp");
 
             app.MapControllers();
 
