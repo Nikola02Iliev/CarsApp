@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ManufacturerInListDTO } from '../dtos/manufacturerDtos/manufacturerInListDTO.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,11 @@ export class ManufacturerService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl:string = 'http://localhost:5261/api/Manufacturers';
+  private baseUrl: string = 'http://localhost:5261/api/Manufacturers';
 
-  getManufacturers(): Observable<any> 
+  getManufacturers(): Observable<ManufacturerInListDTO[]> 
   {
-    return this.http.get<any>(this.baseUrl);
+    return this.http.get<ManufacturerInListDTO[]>(this.baseUrl);
   }
   
 }

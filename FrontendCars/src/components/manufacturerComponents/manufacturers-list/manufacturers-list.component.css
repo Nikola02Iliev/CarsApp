@@ -1,0 +1,165 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: #D2F3ED;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.message-holder{
+    width: 50%;
+    height: 10%;
+    background-color: #D2F3ED;
+    text-align: center;
+}
+
+.message-holder h1{
+    color: #387A51;
+}
+
+
+.manufacturers-list-holder{
+    background-color: #D2F3ED;
+    width: 60%;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.manufacturers-list-holder-smaller-width{
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.manufacturer-holder{
+    background-color: #88865D;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 10px;
+}
+
+.manufacturer-holder-smaller-width{
+    background-color: #88865D;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 10px;
+    font-size: small;
+}
+
+
+.manufacturer-manufacturer-name-holder{
+    border-bottom: 3px solid #387A51;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+}
+.manufacturer-manufacturer-name-holder h3{
+    font-weight:bolder;
+}
+
+.manufacturer-details-button-holder button{
+    background-color: #387A51;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 7px 30px;
+}
+
+.manufacturer-details-button-holder-smaller-width button{
+    background-color: #387A51;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 4px 20px;
+}
+
+.manufacturer-details-button-holder button:hover{
+    cursor: pointer;
+    background-color: #A6C4A8;
+    transition: background-color 0.5s;
+    
+}
+
+.manufacturer-details-button-holder button:not(:hover){
+    background-color: #387A51;
+    transition: background-color 0.5s;
+}
+
+.loader {
+    color: #387A51;
+    font-size: 10px;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    position: relative;
+    text-indent: -9999em;
+    animation: mulShdSpin 1.3s infinite linear;
+    transform: translateZ(0);
+  }
+  
+  @keyframes mulShdSpin {
+    0%,
+    100% {
+      box-shadow: 0 -3em 0 0.2em, 
+      2em -2em 0 0em, 3em 0 0 -1em, 
+      2em 2em 0 -1em, 0 3em 0 -1em, 
+      -2em 2em 0 -1em, -3em 0 0 -1em, 
+      -2em -2em 0 0;
+    }
+    12.5% {
+      box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 
+      3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, 
+      -2em 2em 0 -1em, -3em 0 0 -1em, 
+      -2em -2em 0 -1em;
+    }
+    25% {
+      box-shadow: 0 -3em 0 -0.5em, 
+      2em -2em 0 0, 3em 0 0 0.2em, 
+      2em 2em 0 0, 0 3em 0 -1em, 
+      -2em 2em 0 -1em, -3em 0 0 -1em, 
+      -2em -2em 0 -1em;
+    }
+    37.5% {
+      box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+       3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, 
+       -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    50% {
+      box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+       3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, 
+       -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+    }
+    62.5% {
+      box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+       3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, 
+       -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+    }
+    75% {
+      box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 
+      3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
+      -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+    }
+    87.5% {
+      box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 
+      3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
+      -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+    }
+  }
+    
