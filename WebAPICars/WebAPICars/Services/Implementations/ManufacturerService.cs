@@ -1,6 +1,7 @@
 ﻿using WebAPICars.DTOs.ManufacturerDTOs;
 using WebAPICars.Filters;
 using WebAPICars.Models;
+using WebAPICars.Queries;
 using WebAPICars.Repositories.Implementations;
 using WebAPICars.Repositories.Interfaces;
 using WebAPICars.Services.Interfaces;
@@ -99,6 +100,23 @@ namespace WebAPICars.Services.Implementations
 
             return manufacturer;
         }
+
+        public async Task<Manufacturer> GetManufacturerByIdWithCarQueiresAsync(int? id, CarQueriesInManufacturerDetails carQueriesInManufacturerDetails)
+        {
+            var manufacturer = await _manufacturerRepository.GetManufacturerByIdAsync(id);
+
+
+
+            var skipNumber = (carQueriesInManufacturerDetails.PageNumber - 1) * carQueriesInManufacturerDetails.PageSize;
+            var takeNumber = carQueriesInManufacturerDetails.PageSize;
+
+            var manufacturerCars = manufacturer.Cars.Skip(skipNumber).Take(takeNumber);
+
+            manufacturer.Cars = manufacturerCars.ToList();
+           
+            return manufacturer;
+        }
+
 
         public async Task PostManufacturerAsync(Manufacturer manufacturer)
         {

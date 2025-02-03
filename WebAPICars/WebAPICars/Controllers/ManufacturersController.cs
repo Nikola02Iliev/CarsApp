@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using WebAPICars.DTOs.ManufacturerDTOs;
 using WebAPICars.Filters;
 using WebAPICars.Mappers;
+using WebAPICars.Queries;
 using WebAPICars.Services.Interfaces;
 
 namespace WebAPICars.Controllers
@@ -35,9 +36,9 @@ namespace WebAPICars.Controllers
 
         //[AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<ActionResult<ManufacturerGetDTO>> GetManufacturer(int? id)
+        public async Task<ActionResult<ManufacturerGetDTO>> GetManufacturer(int? id, [FromQuery] CarQueriesInManufacturerDetails carQueriesInManufacturerDetails)
         {
-            var existingManufacturer = await _manufacturerService.GetManufacturerByIdAsync(id);
+            var existingManufacturer = await _manufacturerService.GetManufacturerByIdWithCarQueiresAsync(id, carQueriesInManufacturerDetails);
 
             if (existingManufacturer == null)
             {
