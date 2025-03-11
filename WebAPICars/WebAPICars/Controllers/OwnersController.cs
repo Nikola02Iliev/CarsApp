@@ -21,7 +21,7 @@ namespace WebAPICars.Controllers
             _ownerService = ownerService;
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult GetOwners([FromQuery] OwnerQueries ownerQueries)
         {
@@ -32,7 +32,7 @@ namespace WebAPICars.Controllers
             return Ok(ToOwnerListDTO);
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<OwnerGetDTO>> GetOwner(int? id)
         {
@@ -48,7 +48,7 @@ namespace WebAPICars.Controllers
             return Ok(ToOwnerGetDTO);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOwner(int id, OwnerPutDTO ownerPutDTO)
         {
@@ -70,7 +70,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> PostOwner(OwnerPostDTO ownerPostDTO)
         {
@@ -84,7 +84,7 @@ namespace WebAPICars.Controllers
             return CreatedAtAction("GetOwnerAfterPost", new { id = ToOwnerModel.OwnerId }, OwnerGetDTOAfterPost);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOwner(int id)
         {
@@ -99,7 +99,7 @@ namespace WebAPICars.Controllers
             return NoContent();
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("delete-all-owners")]
         public async Task<IActionResult> DeleteAllOwners()
         {
